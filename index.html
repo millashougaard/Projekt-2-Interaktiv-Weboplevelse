@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Svindleropkaldet</title>
+  <script src="js/vishing.js" defer></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<main>
+
+  <!-- INTRO SIDE -->
+  <section class="intro-page">
+    <h1>Et opkald fra banken?</h1>
+
+    <p class="intro-box">
+        I dette scenarie spiller du <strong>Kirsten – 75 år og kunde i Nordea</strong>.<br><br>
+        Om lidt ringer telefonen. I den anden ende er en person, der siger, de ringer fra banken.<br><br>
+        Din opgave er at <strong>hjælpe Kirsten med at navigere i samtalen og træffe beslutninger</strong>, som hun ville gøre i virkeligheden.<br><br>
+        Lyt godt efter, tænk dig om – og vælg det, du mener, Kirsten ville gøre.
+    </p>
+
+    <button class="start-button">
+      <img src="icons/declinephone.svg" alt="Start spillet">
+    </button>
+    <span class="button-label">Start spillet</span>
+  </section>
+
+  <!-- TELEFONEN RINGER -->
+  <section id="call-page-start" class="call-page" style="display: none;">
+    <header class="call-header">
+      <p class="call-title">Mobil</p>
+      <p class="phone-number">70 33 33 33</p>
+      <p class="sender">(Nordea)</p>
+    </header>
+
+    <audio id="call-sound" src="#" autoplay></audio>
+
+    <p class="decline-message" style="display: none;">
+      Der er gået 3 dage. Nu ringer telefonen igen... Det ser ud til, at nogen gerne vil have fat i dig.
+    </p>
+
+    <div class="call-buttons">
+      <button class="decline">
+        <img src="icons/declinephone.svg" alt="Afvis opkald">
+        <span class="button-label">Afvis opkald</span>
+      </button>
+      
+      <button class="accept">
+        <img src="icons/declinephone.svg" alt="Acceptér opkald">
+        <span class="button-label">Acceptér opkald</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- AKTIVT OPKALD (efter accepteret opkald) -->
+  <section class="phone" style="display: none;">
+    <header class="call-header">
+      <p class="call-title">Timer</p>
+      <p class="phone-number">70 33 33 33</p>
+      <p class="sender">(Nordea)</p>
+    </header>
+
+    <div class="content-container">
+      <video src="videos/ny.mp4" autoplay></video>
+
+      <p class="netbank-info" style="display: none;">
+        Du er nu logget på din Netbank.<br> 
+        Heldigvis er der ingen transaktioner, du ikke kender til.</p>
+
+      <img id="nordeaMobile" src="img/NordeaMobile.png" alt="Konto oversigt på mobil bank" style="display: none;"> 
+
+      <p class="sms" style="display: none;">
+        Nordea har netop registreret at du er i gang med at 
+        fortage en større overførsel. Du har derfor modtaget
+        følgende SMS.<br> 
+        
+        Svar JA, hvis den skal gennemføres – NEJ,
+        hvis den ikke skal gennemføres.
+      </p>
+      
+      <img id="nordeaSMS" src="img/NordeaSMS.png" alt="Bekræftelses SMS fra Nordea" style="display: none;">
+    </div>
+
+  
+
+    <div class="btn-row top">
+        <button class="inactive" disabled></button>
+        <button class="inactive" disabled></button>
+        <button class="inactive" disabled></button>
+    </div>
+
+    <div class="btn-row bottom">
+        <button class="active">
+          <img src="icons/question.svg" alt="Overhovedet ikke">
+          <span class="button-label">Overhovedet ikke.</span>
+        </button>
+   
+        <button class="decline">
+          <img src="icons/declinephone.svg" alt="Læg på">
+          <span class="button-label">Læg på</span>
+        </button>
+   
+        <button class="sometimes-active">
+          <img src="icons/question.svg" alt="Andet svar">
+          <span class="button-label">#</span>
+        </button>
+    </div>
+  </section>
+
+  <!-- AFSLUTNING -->
+  <section class="ending" style="display: none;">
+    <div class="overfold">
+
+      <section class="main-box">
+        <h1 id="mainText" class="main-text"></h1><br><br><br><br>
+        <a id="playAgainLink" href="#">Spil igen</a><br><br>
+        <a id="learnMoreLink" href="#">Læs mere</a><br><br>
+      
+        <!-- Flyttet herind -->
+        <div class="icon-box">
+          <img id="alarmIcon" src="icons/alarm-red.svg" alt="Alarm ikon" class="alarm-icon">
+        </div>
+      
+        <div class="tips-box">
+          <p><strong>3 gode råd til at undgå at blive snydt</strong> </p>
+          <ul>
+            <li>Banken ringer aldrig uopfordret.</li><br>
+            <li>Det er svindel, hvis nogen beder dig overføre penge.</li><br>
+            <li>Hold hovedet koldt og tænk dig om før hurtige beslutninger.</li><br>
+          </ul>
+        </div>
+      </section>
+    
+      <section class="small-heading">
+          <p id="smallHeadingTitle"></p>
+          <ol id="smallHeadingList"></ol>
+        </section>
+      </section>
+    </div>
+
+    <section class="underfold" style="display: none;"> <!-- Den her skal lige fixes så den vises på ending -->
+      <h2>Sådan kan du hjælpe ældre i din omgangskreds med at blive mere modstandsdygtige over for svindel</h2>
+      <p>Her kommer din faste tekst.</p>
+    </section>
+  </section>
+
+</main>
+</body>
+</html>

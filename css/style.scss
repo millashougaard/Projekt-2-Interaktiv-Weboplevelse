@@ -1,0 +1,268 @@
+@use 'buttons';
+
+/* Variables */
+$box-color: #D9D9D9;
+$active-btn-color: #FFFF;
+$inactive-btn-color: #575654;
+$accept-btn-color: #A3DC80; 
+$decline-btn-color: #FF453A; 
+$bg-color: #32302D;
+$font-family: 'Inter', sans-serif;
+$border-radius: 50px;
+$spacing: 20px;
+
+/* General Styling */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font-family;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-color: $bg-color;
+    padding: $spacing;
+}
+
+/* Intro Page Styling */
+.intro-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: $spacing;
+
+    h1 {
+        font-size: 2.6em;
+    }
+    .intro-box {
+        background-color: $box-color;
+        color: black;
+        border-radius: $border-radius;
+        max-width: 850px;
+        padding: $spacing * 2;
+        margin-top: $spacing;
+        font-size: 1.3em;
+    }
+
+    .start-button {
+        @include buttons.phone-button($accept-btn-color);
+        img {
+            transform: rotate(225deg); /* Roterer mobil ikon */
+        }
+    }
+    .button-label {
+        @include buttons.button-label-style;
+    }
+}
+
+/* Call Header Styling */
+.call-header {
+    text-align: center;
+    color: white;
+    margin-top: $spacing;
+
+    .call-title {
+        font-size: 1.2em;
+        margin-bottom: $spacing;
+    }
+    .phone-number {
+        font-size: 2.8em;
+        margin: $spacing;
+    }
+    .sender {
+        font-size: 1.2em;
+        margin-top: $spacing;
+    }
+}
+
+/* Call Page Styling */
+.call-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .decline-message {
+        background-color: $box-color;
+        color: black;
+        border-radius: $border-radius;
+        max-width: 850px;
+        padding: $spacing * 2;
+        margin-top: $spacing;
+        font-size: 1.3em;
+    }
+
+    .call-buttons {
+        display: flex;
+        gap: $spacing * 3;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: $spacing * 4;
+      
+        // Knappen
+        button {
+          @include buttons.phone-button($inactive-btn-color);
+        }
+      
+        .accept {
+          @include buttons.phone-button($accept-btn-color);
+      
+          img {
+            transform: rotate(225deg);
+          }
+        }
+      
+        .decline {
+          @include buttons.phone-button($decline-btn-color);
+        }
+      
+        // Label placering
+        .button-label {
+          @include buttons.button-label-style;
+          width: 100%;
+          text-align: center;
+        }
+      
+        // Gør knap og label til visuelle par
+        button,
+        .button-label {
+          flex: 0 0 110px; // Samme bredde som knappen
+        }
+      }
+}
+
+/* Telefon Interface Styling */
+.phone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .btn-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: $spacing;
+        
+        button {
+          @include buttons.phone-button($inactive-btn-color); // standard style
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+      
+          &.inactive {
+              @include buttons.phone-button($inactive-btn-color);
+              pointer-events: none;
+          }
+      
+          &.active {
+              @include buttons.phone-button($active-btn-color);
+          }
+      
+          &.decline {
+              @include buttons.phone-button($decline-btn-color);
+          }
+      
+          &.sometimes-active {
+              @include buttons.phone-button($active-btn-color);
+      
+              &.inactive {
+                  @include buttons.phone-button($inactive-btn-color);
+                  pointer-events: none;
+              }
+          }
+      
+          .btn-label {
+              @include buttons.button-label-style;
+          }
+      }
+      
+    }
+}
+
+/* Video Styling */
+.content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    video {
+        width: 40px;
+        height: auto;
+    }
+}
+
+/* Ending Styling */
+.ending {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-size: 1.3em;
+    color: white;
+  
+    .overfold {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      padding: 2rem;
+    }
+  
+    .main-box {
+      background-color: $box-color;
+      color: black;
+      border-radius: $border-radius;
+      padding: $spacing * 2;
+      max-width: 850px;
+      width: 100%;
+      position: relative; // gør den til positioneringsparent
+  
+      .main-text {
+        font-size: 1.8em;
+        font-weight: 600;
+        max-width: 80%;
+      }
+  
+      .icon-box {
+        position: absolute;
+        top: -40px;
+        right: -40px;
+      }
+  
+      .tips-box {
+        position: absolute;
+        bottom: -150px;
+        right: -150px;
+        background-color: white;
+        color: black;
+        border-radius: $border-radius;
+        max-width: 350px;
+        padding: $spacing * 1.5;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    .small-heading {
+        max-width: 60%;
+    }
+  
+    .underfold {
+      margin-top: 120px; // plads til tips-box der overlapper
+      text-align: center;
+  
+      h2 {
+        font-size: 1.5em;
+      }
+    }
+  }
+  

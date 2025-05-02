@@ -1,0 +1,376 @@
+/*Variables*/
+/* Variables */
+/* General Styling */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background-color: #32302D;
+  padding: 20px;
+}
+
+/* Intro Page Styling */
+.intro-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.intro-page h1 {
+  font-size: 2.6em;
+}
+.intro-page .intro-box {
+  background-color: #D9D9D9;
+  color: black;
+  border-radius: 50px;
+  max-width: 850px;
+  padding: 40px;
+  margin-top: 20px;
+  font-size: 1.3em;
+}
+.intro-page .start-button {
+  background-color: #A3DC80;
+  border: none;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  padding: 0;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.intro-page .start-button img {
+  width: 50px;
+  height: 50px;
+}
+.intro-page .start-button img {
+  transform: rotate(225deg); /* Roterer mobil ikon */
+}
+.intro-page .button-label {
+  margin-top: 20px;
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+/* Call Header Styling */
+.call-header {
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+}
+.call-header .call-title {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+.call-header .phone-number {
+  font-size: 2.8em;
+  margin: 20px;
+}
+.call-header .sender {
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+
+/* Call Page Styling */
+.call-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.call-page .decline-message {
+  background-color: #D9D9D9;
+  color: black;
+  border-radius: 50px;
+  max-width: 850px;
+  padding: 40px;
+  margin-top: 20px;
+  font-size: 1.3em;
+}
+.call-page .call-buttons {
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 80px;
+}
+.call-page .call-buttons button {
+  background-color: #575654;
+  border: none;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  padding: 0;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.call-page .call-buttons button img {
+  width: 50px;
+  height: 50px;
+}
+.call-page .call-buttons .accept {
+  background-color: #A3DC80;
+  border: none;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  padding: 0;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.call-page .call-buttons .accept img {
+  width: 50px;
+  height: 50px;
+}
+.call-page .call-buttons .accept img {
+  transform: rotate(225deg);
+}
+.call-page .call-buttons .decline {
+  background-color: #FF453A;
+  border: none;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  padding: 0;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.call-page .call-buttons .decline img {
+  width: 50px;
+  height: 50px;
+}
+.call-page .call-buttons .button-label {
+  margin-top: 20px;
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+  width: 100%;
+  text-align: center;
+}
+.call-page .call-buttons button,
+.call-page .call-buttons .button-label {
+  flex: 0 0 110px;
+}
+
+/* Telefon Interface Styling */
+.phone {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.phone .btn-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+.phone .btn-row button {
+  background-color: #575654;
+  border: none;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  padding: 0;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.phone .btn-row button img {
+  width: 50px;
+  height: 50px;
+}
+.phone .btn-row button.inactive {
+  background-color: #575654;
+  border: none;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  padding: 0;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: none;
+}
+.phone .btn-row button.inactive img {
+  width: 50px;
+  height: 50px;
+}
+.phone .btn-row button.active {
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  padding: 0;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.phone .btn-row button.active img {
+  width: 50px;
+  height: 50px;
+}
+.phone .btn-row button.decline {
+  background-color: #FF453A;
+  border: none;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  padding: 0;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.phone .btn-row button.decline img {
+  width: 50px;
+  height: 50px;
+}
+.phone .btn-row button.sometimes-active {
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  padding: 0;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.phone .btn-row button.sometimes-active img {
+  width: 50px;
+  height: 50px;
+}
+.phone .btn-row button.sometimes-active.inactive {
+  background-color: #575654;
+  border: none;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  padding: 0;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: none;
+}
+.phone .btn-row button.sometimes-active.inactive img {
+  width: 50px;
+  height: 50px;
+}
+.phone .btn-row button .btn-label {
+  margin-top: 20px;
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+/* Video Styling */
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.video-container video {
+  width: 40%;
+  height: auto;
+}
+
+/* Ending Styling */
+.ending {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 1.3em;
+  color: white;
+}
+.ending .overfold {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 2rem;
+}
+.ending .main-box {
+  background-color: #D9D9D9;
+  color: black;
+  border-radius: 50px;
+  padding: 40px;
+  max-width: 850px;
+  width: 100%;
+  position: relative;
+}
+.ending .main-box .main-text {
+  font-size: 1.8em;
+  font-weight: 600;
+  max-width: 80%;
+}
+.ending .main-box .icon-box {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+}
+.ending .main-box .icon-box img {
+  width: 200px;
+}
+.ending .main-box .tips-box {
+  position: absolute;
+  bottom: -150px;
+  right: -150px;
+  background-color: white;
+  color: black;
+  border-radius: 50px;
+  max-width: 350px;
+  padding: 30px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.ending .small-heading {
+  max-width: 60%;
+}
+.ending .underfold {
+  margin-top: 120px;
+  text-align: center;
+}
+.ending .underfold h2 {
+  font-size: 1.5em;
+}/*# sourceMappingURL=style.css.map */
