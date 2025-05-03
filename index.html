@@ -26,9 +26,11 @@
     </p>
 
     <button class="start-button">
+      <span class="circle-bg">
       <img src="icons/declinephone.svg" alt="Start spillet">
+    </span>
+      <span class="button-label">Start spillet</span>
     </button>
-    <span class="button-label">Start spillet</span>
   </section>
 
   <!-- TELEFONEN RINGER -->
@@ -47,13 +49,17 @@
 
     <div class="call-buttons">
       <button class="decline">
-        <img src="icons/declinephone.svg" alt="Afvis opkald">
+        <span class="circle-bg">
+          <img src="icons/declinephone.svg" alt="Afvis opkald" />
+        </span>
         <span class="button-label">Afvis opkald</span>
       </button>
       
       <button class="accept">
-        <img src="icons/declinephone.svg" alt="Acceptér opkald">
-        <span class="button-label">Acceptér opkald</span>
+        <span class="circle-bg">
+          <img src="icons/declinephone.svg" alt="Accepter opkald" />
+        </span>
+        <span class="button-label">Accepter</span>
       </button>
     </div>
   </section>
@@ -93,24 +99,40 @@
     </div>
 
     <div class="btn-row top">
-        <button class="inactive" disabled></button>
-        <button class="inactive" disabled></button>
-        <button class="inactive" disabled></button>
+      <button class="inactive" disabled>
+        <span class="circle-bg"></span>
+        <span class="button-label"></span>
+      </button>
+      <button class="inactive" disabled>
+        <span class="circle-bg"></span>
+        <span class="button-label"></span>
+      </button>
+      <button class="inactive" disabled>
+        <span class="circle-bg"></span>
+        <span class="button-label"></span>
+      </button>
     </div>
+    
 
     <div class="btn-row bottom">
         <button class="active">
+          <span class="circle-bg">
           <img src="icons/question.svg" alt="Overhovedet ikke">
+        </span>
           <span class="button-label">Overhovedet ikke.</span>
         </button>
    
         <button class="decline">
+          <span class="circle-bg">
           <img src="icons/declinephone.svg" alt="Læg på">
+        </span>
           <span class="button-label">Læg på</span>
         </button>
    
         <button class="sometimes-active">
+          <span class="circle-bg">
           <img src="icons/question.svg" alt="Andet svar">
+        </span>
           <span class="button-label">#</span>
         </button>
     </div>

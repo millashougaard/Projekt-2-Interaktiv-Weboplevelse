@@ -80,60 +80,36 @@ main {
     }
 }
 
-/* Call Page Styling */
-.call-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.call-buttons {
+  display: flex;
+  gap: $spacing * 3;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: $spacing * 4;
 
-    .decline-message {
-        background-color: $box-color;
-        color: black;
-        border-radius: $border-radius;
-        max-width: 850px;
-        padding: $spacing * 2;
-        margin-top: $spacing;
-        font-size: 1.3em;
+  button {
+    @include buttons.phone-button($inactive-btn-color);
+
+    .button-label {
+      @include buttons.button-label-style;
     }
+  }
 
-    .call-buttons {
-        display: flex;
-        gap: $spacing * 3;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: $spacing * 4;
-      
-        // Knappen
-        button {
-          @include buttons.phone-button($inactive-btn-color);
-        }
-      
-        .accept {
-          @include buttons.phone-button($accept-btn-color);
-      
-          img {
-            transform: rotate(225deg);
-          }
-        }
-      
-        .decline {
-          @include buttons.phone-button($decline-btn-color);
-        }
-      
-        // Label placering
-        .button-label {
-          @include buttons.button-label-style;
-          width: 100%;
-          text-align: center;
-        }
-      
-        // Gør knap og label til visuelle par
-        button,
-        .button-label {
-          flex: 0 0 110px; // Samme bredde som knappen
-        }
+  .accept {
+    .circle-bg {
+      background-color: $accept-btn-color;
+
+      img {
+        transform: rotate(225deg);
       }
+    }
+  }
+
+  .decline {
+    .circle-bg {
+      background-color: $decline-btn-color;
+    }
+  }
 }
 
 /* Telefon Interface Styling */
@@ -145,59 +121,59 @@ main {
   .btn-row {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     gap: $spacing;
-    z-index: 1; // sørg for at billede kan ligge over
+    z-index: 1;
+
+    &.top {
+      margin-top: $spacing;
+    }
 
     &.bottom {
       margin-top: auto;
     }
 
     button {
-      @include buttons.phone-button($inactive-btn-color); // standard style
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      @include buttons.phone-button($inactive-btn-color);
+
+      .button-label {
+        @include buttons.button-label-style;
+        max-width: 8rem;
+      }
+
+      &.active .circle-bg {
+        background-color: $active-btn-color;
+      }
+
+      &.decline .circle-bg {
+        background-color: $decline-btn-color;
+      }
+
+      &.sometimes-active .circle-bg {
+        background-color: $active-btn-color;
+      }
+
+      &.sometimes-active.inactive .circle-bg {
+        background-color: $inactive-btn-color;
+      }
 
       &.inactive {
-        @include buttons.phone-button($inactive-btn-color);
         pointer-events: none;
-      }
-
-      &.active {
-        @include buttons.phone-button($active-btn-color);
-      }
-
-      &.decline {
-        @include buttons.phone-button($decline-btn-color);
-      }
-
-      &.sometimes-active {
-        @include buttons.phone-button($active-btn-color);
-
-        &.inactive {
-          @include buttons.phone-button($inactive-btn-color);
-          pointer-events: none;
-        }
-      }
-
-      .btn-label {
-        @include buttons.button-label-style;
       }
     }
   }
 }
 
 
+
+
+
 /* Video Styling */
 .content-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 2rem;
-  gap: 2rem;
   flex: 1; // fylder al plads mellem header og knapper
   width: 100%;
   box-sizing: border-box;
@@ -220,8 +196,7 @@ main {
   }
 
   video {
-    display: block;
-    max-width: 100%;
+    max-width: 40%;
     height: auto;
   }
 }

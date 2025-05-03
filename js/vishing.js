@@ -39,7 +39,7 @@ let currentScene = 1;                        // Den aktuelle scene, som brugeren
 // Data, der beskriver hver scene, herunder video, knapper og næste scene
 const sceneData = { 
     1: {
-      video: 'videos/lyd_1.mp4',             // Den video, der afspilles i nuværende scene
+      video: 'videos/scene_1.mov',             // Den video, der afspilles i nuværende scene
       active: {                              // 'active' knap
         icon: 'icons/question.svg',          // Det ikon knappen har, i nuværende scene
         label: 'Overhovedet ikke.',          // Det label knappen har, i nuværende scene
@@ -241,6 +241,13 @@ function loadScene(sceneNumber) {
       const element = document.getElementById(id);
       if (element) element.style.display = 'block'; // Vis elementet i aktuel scene, hvor den er defineret
     });
+  }
+
+  // Vis inputfelt kun i scene 6
+  if (sceneNumber === 6) {
+    userInputContainer.style.display = 'block';     // Vis inputfeltet
+  } else {
+    userInputContainer.style.display = 'none';      // Skjul inputfeltet i alle andre scener
   }
 
   // Opdater video

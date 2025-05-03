@@ -16,31 +16,47 @@ $spacing: 20px; //General spacing
 
 // Mixin til telefonknapper
 @mixin phone-button($bg-color) {
-  background-color: $bg-color;
+  background-color: transparent;
   border: none;
-  border-radius: 50%;
-  width: 110px;
-  height:110px;
   padding: 0;
-  margin-top: $spacing * 4;
+  margin-top: $spacing * 2;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 
-  img {
-    width: 50px;
-    height: 50px;
-  }
+  .circle-bg {
+    background-color: $bg-color;
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    img {
+      width: 50px;
+      height: 50px;
+      pointer-events: none;
+    }
+  }
 }
 
+
 @mixin button-label-style {
-  margin-top: $spacing;
   color: white;
   text-align: center;
   font-size: 1.5em;
+  max-width: 8rem;
+  line-height: 1.2;
+  margin-top: 1em;
 }
+
+
+
+
+
 
 
 
