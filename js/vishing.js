@@ -19,6 +19,11 @@ const activeBtn = document.querySelector('.btn-row.bottom .active');
 const declineBtn = document.querySelector('.btn-row.bottom .decline');
 const sometimesActiveBtn = document.querySelector('.btn-row.bottom .sometimes-active');
 
+// --------------- INPUTFELT I SCENE 6 ---------------
+
+const userInputContainer = document.getElementById('userInputContainer');
+const userInput = document.getElementById('userInput');
+
 // Afslutninger - Side til afslutning af scenariet
 const endingPage = document.querySelector('.ending');
 
@@ -236,6 +241,9 @@ function loadScene(sceneNumber) {
       }
     });
   }
+  
+
+  
 
   // Opdater videoelementet med den nye scenes video
   videoElement.src = scene.video;
@@ -386,18 +394,30 @@ function loadEnding(endingNumber) {
 
 // --------------- TILFØJ EN NY FUNKTION TIL BRUGERINPUT ---------------
 
+// --------------- TILFØJ EN NY FUNKTION TIL BRUGERINPUT ---------------
+
 // Denne funktion håndterer brugerens input (JA/NEJ)
 function handleUserInput() {
-  // Lyt efter klik på knappen "Send"
-  document.getElementById('submitAnswer').addEventListener('click', function() {
-    const userInput = document.getElementById('userInput').value.trim().toUpperCase(); // Få input og konverter til store bogstaver
-    
-    if (userInput === 'JA') {
-      loadEnding(2); // Hvis bruger skriver JA, indlæses afslutning 2
-    } else if (userInput === 'NEJ') {
-      loadEnding(3); // Hvis bruger skriver NEJ, indlæses afslutning 3
-    } else {
-      alert("Skriv venligst JA eller NEJ."); // Hvis input er noget andet
+  // Lyt efter tastetryk i inputfeltet
+  userInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') { // Når Enter trykkes
+      const input = userInput.value.trim().toUpperCase(); // Få input og konverter til store bogstaver
+
+      if (input === 'JA') {
+        phoneInterface.style.display = 'none'; // Skjul telefoninterface
+        endingPage.style.display = 'block';    // Vis afslutningsside
+        loadEnding(4); // Hvis bruger skriver JA, indlæses afslutning 4
+      } else if (input === 'NEJ') {
+        phoneInterface.style.display = 'none';
+        endingPage.style.display = 'block';
+        loadEnding(3); // Hvis bruger skriver NEJ, indlæses afslutning 3
+      } else {
+        alert("Skriv venligst JA eller NEJ."); // Hvis input er noget andet
+      }
     }
   });
 }
+
+
+// Kald denne funktion når siden indlæses
+handleUserInput();
