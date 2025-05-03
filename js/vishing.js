@@ -421,3 +421,22 @@ function handleUserInput() {
 
 // Kald denne funktion når siden indlæses
 handleUserInput();
+
+// Gør det muligt at starte forfra fra enhver afslutning
+document.getElementById("playAgainLink").addEventListener("click", function () {
+  // Nulstil state
+  currentScene = 1;
+  hasDeclinedOnce = false;
+
+  // Skjul afslutningsside og vis intro igen
+  endingPage.style.display = "none";
+  introPage.style.display = "block";
+
+  // Skjul eventuelle ekstra elementer fra tidligere scener
+  document.querySelectorAll('.content-container p, .content-container img').forEach(el => {
+    el.style.display = 'none';
+  });
+
+  // Ryd inputfeltet hvis det blev brugt
+  userInput.value = '';
+});

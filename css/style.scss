@@ -295,4 +295,30 @@ main {
       }
     }
   }
+
+/*-----Info Page Styling-----*/
+.info-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: $spacing;
+  
+
+  h1, h2, h3 {
+    font-weight: 700;
+    width: 100%; // så overskrifterne stadig tager fuld bredde
+    text-align: left;
+  }
+
+  .card {
+      background-color: $box-color;
+      color: black;
+      border-radius: $border-radius;
+      width: 100svw; /* 100% indtil max-width nås */
+      max-width: 850px;
+      padding: $spacing*2;
+      margin-top: $spacing;
+    }
+    
+}
   
