@@ -2,6 +2,7 @@
 /*Variables*/
 /* Variables */
 /* General Styling */
+/* Grundlæggende styling for hele dokumentet */
 body {
   margin: 0;
   padding: 0;
@@ -9,6 +10,7 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+/* Main layout for hele scenariet */
 main {
   display: flex;
   flex-direction: column;
@@ -19,24 +21,27 @@ main {
   padding: 20px;
 }
 
-/* Intro Page Styling */
+/* --------------- Intro Page --------------- */
 .intro-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 60px;
+  /* Start knap-styling */
+  /* Label-styling for knap */
 }
 .intro-page h1 {
   font-size: 2.6em;
+  font-weight: 500;
+  color: white;
 }
 .intro-page .intro-box {
   background-color: #D9D9D9;
   color: black;
   border-radius: 50px;
-  max-width: 850px;
+  max-width: 900px;
   padding: 40px;
-  margin-top: 20px;
-  font-size: 1.3em;
+  font-size: 1.8em;
 }
 .intro-page .start-button {
   background-color: transparent;
@@ -48,6 +53,8 @@ main {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: absolute;
+  bottom: 100px;
 }
 .intro-page .start-button .circle-bg {
   background-color: #A3DC80;
@@ -64,7 +71,7 @@ main {
   pointer-events: none;
 }
 .intro-page .start-button img {
-  transform: rotate(225deg); /* Roterer mobil ikon */
+  transform: rotate(225deg); /* Roterer mobil-ikonet */
 }
 .intro-page .button-label {
   color: white;
@@ -73,13 +80,14 @@ main {
   max-width: 8rem;
   line-height: 1.2;
   margin-top: 1em;
+  font-size: 2em;
 }
 
-/* Call Header Styling */
+/* --------------- Call Header --------------- */
 .call-header {
   text-align: center;
   color: white;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 .call-header .call-title {
   font-size: 1.2em;
@@ -94,14 +102,38 @@ main {
   margin-top: 20px;
 }
 
-.call-buttons {
+/* --------------- Call Page --------------- */
+/* Første opkaldsside (Telefonen ringer) */
+.call-page {
   display: flex;
-  gap: 60px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.call-page .decline-message {
+  background-color: #D9D9D9;
+  color: black;
+  border-radius: 50px;
+  max-width: 850px;
+  padding: 40px;
+  margin-top: 120px;
+  font-size: 1.8em;
+  text-align: center;
+}
+.call-page .call-buttons {
+  display: flex;
+  gap: 300px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 80px;
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  /* Knap-styling - her genbruges mixins fra _buttons.scss */
+  /* Farver og ikoner for accept og decline knapper */
 }
-.call-buttons button {
+.call-page .call-buttons button {
   background-color: transparent;
   border: none;
   padding: 0;
@@ -112,7 +144,7 @@ main {
   justify-content: center;
   cursor: pointer;
 }
-.call-buttons button .circle-bg {
+.call-page .call-buttons button .circle-bg {
   background-color: #575654;
   border-radius: 50%;
   width: 110px;
@@ -121,30 +153,31 @@ main {
   align-items: center;
   justify-content: center;
 }
-.call-buttons button .circle-bg img {
+.call-page .call-buttons button .circle-bg img {
   width: 50px;
   height: 50px;
   pointer-events: none;
 }
-.call-buttons button .button-label {
+.call-page .call-buttons button .button-label {
   color: white;
   text-align: center;
   font-size: 1.5em;
   max-width: 8rem;
   line-height: 1.2;
   margin-top: 1em;
+  font-size: 2em;
 }
-.call-buttons .accept .circle-bg {
+.call-page .call-buttons .accept .circle-bg {
   background-color: #A3DC80;
 }
-.call-buttons .accept .circle-bg img {
+.call-page .call-buttons .accept .circle-bg img {
   transform: rotate(225deg);
 }
-.call-buttons .decline .circle-bg {
+.call-page .call-buttons .decline .circle-bg {
   background-color: #FF453A;
 }
 
-/* Telefon Interface Styling */
+/* --------------- Telefoninterface --------------- */
 .phone {
   display: flex;
   flex-direction: column;
@@ -155,14 +188,8 @@ main {
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  gap: 20px;
+  gap: 200px;
   z-index: 1;
-}
-.phone .btn-row.top {
-  margin-top: 20px;
-}
-.phone .btn-row.bottom {
-  margin-top: auto;
 }
 .phone .btn-row button {
   background-color: transparent;
@@ -174,6 +201,7 @@ main {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  /* Farver og tilstande for forskellige knapper */
 }
 .phone .btn-row button .circle-bg {
   background-color: #575654;
@@ -196,7 +224,6 @@ main {
   max-width: 8rem;
   line-height: 1.2;
   margin-top: 1em;
-  max-width: 8rem;
 }
 .phone .btn-row button.active .circle-bg {
   background-color: white;
@@ -214,7 +241,7 @@ main {
   pointer-events: none;
 }
 
-/* Video Styling */
+/* Content */
 .content-container {
   display: flex;
   justify-content: center;

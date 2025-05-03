@@ -12,164 +12,193 @@ $border-radius: 50px;
 $spacing: 20px;
 
 /* General Styling */
+/* Grundlæggende styling for hele dokumentet */
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: $font-family;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-family; // Bruger en global font fra variablerne
 }
 
+/* Main layout for hele scenariet */
 main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    background-color: $bg-color;
-    padding: $spacing;
-}
-
-/* Intro Page Styling */
-.intro-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: $spacing;
-
-    h1 {
-        font-size: 2.6em;
-    }
-    .intro-box {
-        background-color: $box-color;
-        color: black;
-        border-radius: $border-radius;
-        max-width: 850px;
-        padding: $spacing * 2;
-        margin-top: $spacing;
-        font-size: 1.3em;
-    }
-
-    .start-button {
-        @include buttons.phone-button($accept-btn-color);
-        img {
-            transform: rotate(225deg); /* Roterer mobil ikon */
-        }
-    }
-    .button-label {
-        @include buttons.button-label-style;
-    }
-}
-
-/* Call Header Styling */
-.call-header {
-    text-align: center;
-    color: white;
-    margin-top: $spacing;
-
-    .call-title {
-        font-size: 1.2em;
-        margin-bottom: $spacing;
-    }
-    .phone-number {
-        font-size: 2.8em;
-        margin: $spacing;
-    }
-    .sender {
-        font-size: 1.2em;
-        margin-top: $spacing;
-    }
-}
-
-.call-buttons {
   display: flex;
-  gap: $spacing * 3;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: $spacing * 4;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background-color: $bg-color; // Baggrundsfarve for hele siden
+  padding: $spacing; // Standard padding
+}
 
-  button {
-    @include buttons.phone-button($inactive-btn-color);
+/* --------------- Intro Page --------------- */
+.intro-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: $spacing*3;
 
-    .button-label {
-      @include buttons.button-label-style;
-    }
+
+  h1 {
+      font-size: 2.6em; 
+      font-weight: 500;
+      color: white;
+  }
+  .intro-box {
+      background-color: $box-color;
+      color: black;
+      border-radius: $border-radius;
+      max-width: 900px;
+      padding: $spacing * 2;
+      font-size: 1.8em; 
   }
 
-  .accept {
-    .circle-bg {
-      background-color: $accept-btn-color;
-
+  /* Start knap-styling */
+  .start-button {
+      @include buttons.phone-button($accept-btn-color); // Genbruger mixin for telefonknappen
+      position: absolute; // Bruges til at placere knapperne nederst på skærmen
+      bottom: $spacing*5; // Juster afstanden fra bunden af skærmen
       img {
-        transform: rotate(225deg);
+          transform: rotate(225deg); /* Roterer mobil-ikonet */
       }
-    }
   }
 
-  .decline {
-    .circle-bg {
-      background-color: $decline-btn-color;
-    }
+  /* Label-styling for knap */
+  .button-label {
+      @include buttons.button-label-style;
+      font-size: 2em;
   }
 }
 
-/* Telefon Interface Styling */
+/* --------------- Call Header --------------- */
+.call-header {
+  text-align: center;
+  color: white;
+  margin-top: $spacing*1.5;
+
+  .call-title {
+      font-size: 1.2em;
+      margin-bottom: $spacing;
+  }
+
+  .phone-number {
+      font-size: 2.8em;
+      margin: $spacing;
+  }
+
+  .sender {
+      font-size: 1.2em;
+      margin-top: $spacing;
+  }
+}
+
+/* --------------- Call Page --------------- */
+/* Første opkaldsside (Telefonen ringer) */
+.call-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  .decline-message {
+      background-color: $box-color;  
+      color: black;
+      border-radius: $border-radius;
+      max-width: 850px;
+      padding: $spacing * 2; // Tilføjer padding direkte på <p> og giver den $box-color
+      margin-top: $spacing*6;
+      font-size: 1.8em;
+      text-align: center;  
+  }
+
+  .call-buttons {
+      display: flex;
+      gap: $spacing * 15;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: absolute;
+      bottom: $spacing*5;
+      left: 50%;  // Placerer venstre kant af knapperne i midten
+      transform: translateX(-50%);  // Skubber knapperne tilbage med 50% af deres bredde for at centrere
+      width: auto;  // Sørger for at knapperne ikke strækker sig over hele bredden
+
+      /* Knap-styling - her genbruges mixins fra _buttons.scss */
+      button {
+          @include buttons.phone-button($inactive-btn-color);
+
+          .button-label {
+              @include buttons.button-label-style;
+              font-size: 2em;
+          }
+      }
+
+      /* Farver og ikoner for accept og decline knapper */
+      .accept {
+          .circle-bg {
+              background-color: $accept-btn-color;
+              img {
+                  transform: rotate(225deg); //Roterer ikonet for accept 
+              }
+          }
+      }
+
+      .decline {
+          .circle-bg {
+              background-color: $decline-btn-color;
+          }
+      }
+  }
+}
+
+
+/* --------------- Telefoninterface --------------- */
 .phone {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100vh; // Fuld højde for telefonlayoutet
 
   .btn-row {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-    gap: $spacing;
-    z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; // Justering af knapperne, så de starter samme sted
+      width: 100%;
+      gap: $spacing * 10; // Øger afstanden mellem knapperne for at give mere plads
+      z-index: 1; // Sørger for at billeder kan vises over knapperne
 
-    &.top {
-      margin-top: $spacing;
-    }
+      button {
+          @include buttons.phone-button($inactive-btn-color); // Genbrug af mixin
 
-    &.bottom {
-      margin-top: auto;
-    }
+          .button-label {
+              @include buttons.button-label-style; // Genbrug af label-styling
+          }
 
-    button {
-      @include buttons.phone-button($inactive-btn-color);
+          /* Farver og tilstande for forskellige knapper */
+          &.active .circle-bg {
+              background-color: $active-btn-color;
+          }
 
-      .button-label {
-        @include buttons.button-label-style;
-        max-width: 8rem;
+          &.decline .circle-bg {
+              background-color: $decline-btn-color;
+          }
+
+          &.sometimes-active .circle-bg {
+              background-color: $active-btn-color;
+          }
+
+          &.sometimes-active.inactive .circle-bg { 
+              background-color: $inactive-btn-color; // Tilføj inactive class når knappen er inactive
+          }
+
+          &.inactive {
+              pointer-events: none; // Deaktiverer klik på inaktive knapper
+          }
       }
-
-      &.active .circle-bg {
-        background-color: $active-btn-color;
-      }
-
-      &.decline .circle-bg {
-        background-color: $decline-btn-color;
-      }
-
-      &.sometimes-active .circle-bg {
-        background-color: $active-btn-color;
-      }
-
-      &.sometimes-active.inactive .circle-bg {
-        background-color: $inactive-btn-color;
-      }
-
-      &.inactive {
-        pointer-events: none;
-      }
-    }
   }
 }
 
 
 
-
-
-/* Video Styling */
+/* Content */
 .content-container {
   display: flex;
   justify-content: center;

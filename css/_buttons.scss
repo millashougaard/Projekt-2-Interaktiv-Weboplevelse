@@ -12,8 +12,6 @@ $font-family: 'Inter', sans-serif;
 $border-radius: 50px;
 $spacing: 20px; //General spacing
 
-// _buttons.scss
-
 // Mixin til telefonknapper
 @mixin phone-button($bg-color) {
   background-color: transparent;
@@ -35,6 +33,7 @@ $spacing: 20px; //General spacing
     align-items: center;
     justify-content: center;
 
+    // Sørg for at ikoner kun bliver placeret, hvis de er til stede
     img {
       width: 50px;
       height: 50px;
@@ -43,7 +42,7 @@ $spacing: 20px; //General spacing
   }
 }
 
-
+// Mixin til button label
 @mixin button-label-style {
   color: white;
   text-align: center;
@@ -52,6 +51,8 @@ $spacing: 20px; //General spacing
   line-height: 1.2;
   margin-top: 1em;
 }
+
+
 
 
 
