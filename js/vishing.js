@@ -54,7 +54,7 @@ const sceneData = {
       declineEnding: 2                       // Hvis brugeren klikker på 'decline' knap -> Load ending (2)
     },
     2: {
-      video: 'videos/lyd_2.mp4',
+      video: 'videos/scene_2.mov',
       active: {
         icon: 'icons/checkmark.svg',
         label: 'Hjælp mig med at sikre min opsparing!',
@@ -69,7 +69,7 @@ const sceneData = {
       declineEnding: 2
     },
     '2.1': {
-      video: 'videos/lyd_2.1.mp4',
+      video: 'videos/scene_2.1.mov',
       active: {
         icon: 'icons/continue.svg',
         label: 'Forsæt samtalen',
@@ -84,7 +84,7 @@ const sceneData = {
       declineEnding: 3
     },
     3: {
-      video: 'videos/lyd_3.mp4',
+      video: 'videos/scene_3.mov',
       active: {
         icon: 'icons/mobil.svg',
         label: 'Log på Nordea Mobile',
@@ -115,7 +115,7 @@ const sceneData = {
       showElements: ['netbank-info', 'nordeaMobile'] // Henter elementer med id="netbank-info" og "nordeaMobile"
     },
     5: {
-      video: 'videos/lyd_5.mp4',
+      video: 'videos/scene_5.mov',
       active: {
         icon: 'icons/kreditkort.svg',
         label: 'Overfør beløb til sikkerheds-depot',
@@ -130,7 +130,7 @@ const sceneData = {
       declineEnding: 3
     },
     '5.1': {
-      video: 'videos/lyd_5.1.mp4',
+      video: 'videos/scene_5.1.mov',
       active: {
         icon: 'icons/kreditkort.svg',
         label: 'Overfør beløb til sikkerheds-depot',
