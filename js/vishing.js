@@ -1,5 +1,6 @@
-'use strict'
-// --------------- VARIABLER: Hent elementer fra HTML ---------------
+'use strict';
+
+/* --------------- VARIABLER: Hent elementer fra HTML --------------- */
 
 // Intro side - Elementer for intro side og startknap
 const introPage = document.querySelector('.intro-page');
@@ -19,201 +20,201 @@ const activeBtn = document.querySelector('.btn-row.bottom .active');
 const declineBtn = document.querySelector('.btn-row.bottom .decline');
 const sometimesActiveBtn = document.querySelector('.btn-row.bottom .sometimes-active');
 
-// --------------- INPUTFELT I SCENE 6 ---------------
-
+// Inputfelt til scene 6
 const userInputContainer = document.getElementById('userInputContainer');
 const userInput = document.getElementById('userInput');
 
-// Afslutninger - Side til afslutning af scenariet
+// Afslutningsside
 const endingPage = document.querySelector('.ending');
 
-// --------------- STATE-VARIABLER ---------------
-// State-variabler holder styr på brugerens interaktion i opkaldet
-let hasDeclinedOnce = false; // Holder styr på om brugeren allerede har afvist én gang
-let currentScene = 1; // Den aktuelle scene, som brugeren er på i samtalen
 
-// --------------- SCENE DATA ---------------
-// Data, der beskriver hver scene, herunder video, kanpper og næste scene
+/* --------------- STATE-VARIABLER --------------- */
 
-const sceneData = {
-  1: {
-    video: 'videos/lyd_1.mp4',
-    active: {
-      icon: 'icons/question.svg',
-      label: 'Overhovedet ikke.',
-      nextScene: 2
+let hasDeclinedOnce = false;                 // Holder styr på om brugeren allerede har afvist én gang
+let currentScene = 1;                        // Den aktuelle scene, som brugeren er på i samtalen
+
+
+/* --------------- SCENE-DATA --------------- */
+
+// Data, der beskriver hver scene, herunder video, knapper og næste scene
+const sceneData = { 
+    1: {
+      video: 'videos/lyd_1.mp4',             // Den video, der afspilles i nuværende scene
+      active: {                              // 'active' knap
+        icon: 'icons/question.svg',          // Det ikon knappen har, i nuværende scene
+        label: 'Overhovedet ikke.',          // Det label knappen har, i nuværende scene
+        nextScene: 2                         // Den scene der afspilles, hvis brugeren klikker på knappen
+      },
+      sometimesActive: {                     // 'sometimes-active' knap
+        icon: null,                          // Indikerer, at knappen ikke har noget ikon
+        label: null,                         // Indikerer, at knappen ikke har noget label
+        nextScene: 2,
+        active: false                        // Indikerer, at knappen er inaktiv
+      },
+      declineEnding: 2                       // Hvis brugeren klikker på 'decline' knap -> Load ending (2)
     },
-    sometimesActive: {
-      icon: null,
-      label: null,
-      nextScene: 2,
-      active: false
+    2: {
+      video: 'videos/lyd_2.mp4',
+      active: {
+        icon: 'icons/checkmark.svg',
+        label: 'Hjælp mig med at sikre min opsparing!',
+        nextScene: 3
+      },
+      sometimesActive: {
+        icon: 'icons/question.svg',
+        label: 'Hvad skal det betyde?',
+        nextScene: '2.1',                    // Hvis brugeren klikker på knappen -> Load under-scene 
+        active: true                         // Indikerer, at knappen er aktiv i denne scene
+      },
+      declineEnding: 2
     },
-    declineEnding: 2
-  },
-  2: {
-    video: 'videos/lyd_2.mp4',
-    active: {
-      icon: 'icons/checkmark.svg',
-      label: 'Hjælp mig med at sikre min opsparing!',
-      nextScene: 3
+    '2.1': {
+      video: 'videos/lyd_2.1.mp4',
+      active: {
+        icon: 'icons/continue.svg',
+        label: 'Forsæt samtalen',
+        nextScene: 3
+      },
+      sometimesActive: {
+        icon: null,
+        label: null,
+        nextScene: 3,
+        active: false
+      },
+      declineEnding: 3
     },
-    sometimesActive: {
-      icon: 'icons/question.svg',
-      label: 'Hvad skal det betyde?',
-      nextScene: '2.1',
-      active: true
+    3: {
+      video: 'videos/lyd_3.mp4',
+      active: {
+        icon: 'icons/mobil.svg',
+        label: 'Log på Nordea Mobile',
+        nextScene: 4
+      },
+      sometimesActive: {
+        icon: null,
+        label: null,
+        nextScene: 4,
+        active: false
+      },
+      declineEnding: 3
     },
-    declineEnding: 2
-  },
-  '2.1': {
-    video: 'videos/lyd_2.1.mp4',
-    active: {
-      icon: 'icons/continue.svg',
-      label: 'Forsæt samtalen',
-      nextScene: 3
+    4: {
+      video: null, // Indikerer, at der ikke er nogen video i denne scene
+      active: {
+        icon: 'icons/checkmark.svg',
+        label: 'Alt er som det skal være',
+        nextScene: 5
+      },
+      sometimesActive: {
+        icon: null,
+        label: null,
+        nextScene: 5,
+        active: false
+      },
+      declineEnding: 3,
+      showElements: ['netbank-info', 'nordeaMobile'] // Henter elementer med id="netbank-info" og "nordeaMobile"
     },
-    sometimesActive: {
-      icon: null,
-      label: null,
-      nextScene: 3,
-      active: false
+    5: {
+      video: 'videos/lyd_5.mp4',
+      active: {
+        icon: 'icons/kreditkort.svg',
+        label: 'Overfør beløb til sikkerheds-depot',
+        nextScene: 6
+      },
+      sometimesActive: {
+        icon: 'icons/question.svg',
+        label: 'Hvordan kan jeg vide, hvem jeg taler med lige nu?',
+        nextScene: '5.1',
+        active: true
+      },
+      declineEnding: 3
     },
-    declineEnding: 3
-  },
-  3: {
-    video: 'videos/lyd_3.mp4',
-    active: {
-      icon: 'icons/mobil.svg',
-      label: 'Log på Nordea Mobile',
-      nextScene: 4
+    '5.1': {
+      video: 'videos/lyd_5.1.mp4',
+      active: {
+        icon: 'icons/kreditkort.svg',
+        label: 'Overfør beløb til sikkerheds-depot',
+        nextScene: 6
+      },
+      sometimesActive: {
+        icon: null,
+        label: null,
+        nextScene: 6,
+        active: false
+      },
+      declineEnding: 3
     },
-    sometimesActive: {
-      icon: null,
-      label: null,
-      nextScene: 4,
-      active: false
-    },
-    declineEnding: 3
-  },
-  4: {
-    video: null,
-    active: {
-      icon: 'icons/checkmark.svg',
-      label: 'Alt er som det skal være',
-      nextScene: 5
-    },
-    sometimesActive: {
-      icon: null,
-      label: null,
-      nextScene: 5,
-      active: false
-    },
-    declineEnding: 3,
-    showElements: ['netbank-info', 'nordeaMobile'] 
-  },
-  5: {
-    video: 'videos/lyd_5.mp4',
-    active: {
-      icon: 'icons/kreditkort.svg',
-      label: 'Overfør beløb til sikkerheds-depot',
-      nextScene: 6
-    },
-    sometimesActive: {
-      icon: 'icons/question.svg',
-      label: 'Hvordan kan jeg vide, hvem jeg taler med lige nu?',
-      nextScene: '5.1',
-      active: true
-    },
-    declineEnding: 3
-  },
-  '5.1': {
-    video: 'videos/lyd_5.1.mp4',
-    active: {
-      icon: 'icons/kreditkort.svg',
-      label: 'Overfør beløb til sikkerheds-depot',
-      nextScene: 6
-    },
-    sometimesActive: {
-      icon: null,
-      label: null,
-      nextScene: 6,
-      active: false
-    },
-    declineEnding: 3
-  },
-  6: {
-    video: null,
-    active: {
-      icon: null,
-      label: null,
-      active: false
-    },
-    sometimesActive: {
-      icon: null,
-      label: null,
-      nextScene: 7,
-      active: false
-    },
-    declineEnding: 3,
-    showElements: ['sms', 'nordeaSMS'] 
+    6: {
+      video: null,
+      active: {
+        icon: null,
+        label: null,
+        active: false // Indikerer, at knappen er inaktiv i denne scene
+      },
+      sometimesActive: {
+        icon: null,
+        label: null,
+        nextScene: 7,
+        active: false
+      },
+      declineEnding: 3,
+      showElements: ['sms', 'nordeaSMS'] // Henter elementer med id="sms" og "nordeaSMS"
+    }
   }
-}
 
 
-// --------------- FUNKTIONER ---------------
+/* --------------- FUNKTIONER: Opkaldsside --------------- */
 
 // Skift visning til første opkaldsside og afspil ringetone
 function startCallPage() {
-  introPage.style.display = 'none'; // Skjul intro side
-  callPageStart.style.display = 'block'; // Vis opkaldsside
-  declineMessage.style.display = 'none'; // Skjul besked
-  callSound.play(); // Afspil opkaldslyd
+  introPage.style.display = 'none';                // Skjul intro side
+  callPageStart.style.display = 'block';           // Vis opkaldsside
+  declineMessage.style.display = 'none';           // Skjul besked (loades kun hvis brugeren trykker 'decline')
+  callSound.play();                                // Afspil ringelyd
 }
 
-// Funktion til at håndtere brugerens afvisning af opkald
+// Håndter afvisning af opkald
 function declineCall() {
-  if (!hasDeclinedOnce) {
-    // Første afvisning - vis besked og stop ringelyd
-    declineMessage.style.display = 'block'; // Vis besked
-    callSound.pause(); // Stop ringelyd
-    hasDeclinedOnce = true; // Opdater status til afvist én gang
+  if (!hasDeclinedOnce) {                          
+    declineMessage.style.display = 'block';        // Hvis 'decline' på første opkaldsside -> Vis besked (afslutning 1)
+    callSound.pause();                             // Stop ringelyd
+    hasDeclinedOnce = true;                        // Opdater status til afvist én gang
   } else {
-    // Anden afvisning - vis afslutning
-    callPageStart.style.display = 'none';
-    endingPage.style.display = 'block';
-    loadEnding(2); // Indlæs afslutning 2 (se loadEnding funktion)
+    callPageStart.style.display = 'none';          
+    endingPage.style.display = 'block';            // Anden afvisning -> Vis afslutning
+    loadEnding(2);                                 // Indlæs afslutning (afslutning 2) -> Se loadEnding funktion (linje #)
   }
 }
 
-// Funktion til at håndtere brugerens accept af opkald
+// Håndter accept af opkald
 function acceptCall() {
-  callPageStart.style.display = 'none'; // Skjul opkaldsside
-  phoneInterface.style.display = 'block'; // Vis telefoninterface
-  callSound.pause(); // Stop ringelyd
-  loadScene(currentScene); // Indlæs den aktuelle scene
+  callPageStart.style.display = 'none';            // Skjul opkaldsside
+  phoneInterface.style.display = 'block';          // Vis telefoninterface
+  callSound.pause();                               // Stop ringelyd
+  loadScene(currentScene);                         // Indlæs den aktuelle scene
 }
 
-// --------------- Telefon interface ---------------
 
-// Håndterer afvisning fra telefoninterface og viser afslutning
+/* --------------- FUNKTIONER: Telefonsamtale --------------- */
+
+// Håndter afslut samtale fra telefoninterface og vis afslutning
 function declineFromPhone() {
   phoneInterface.style.display = 'none';
   endingPage.style.display = 'block';
   const scene = sceneData[currentScene];
-  loadEnding(scene?.declineEnding || 2); // Indlæs afslutning for den aktuelle scene
+  loadEnding(scene?.declineEnding || 2);           // Indlæs afslutning for den aktuelle scene
 }
 
-// Håndterer tryk på den aktive knap (skifter scene)
+// Håndter tryk på 'Active' knap 
 function handleActiveBtn() {
   const next = sceneData[currentScene]?.active?.nextScene;
   if (next) {
-    currentScene = next; // Opdater scene
-    loadScene(currentScene); // Indlæs næste scene
+    currentScene = next;                           // Opdater scene
+    loadScene(currentScene);                       // Indlæs næste scene
   }
 }
 
-// Håndterer tryk på den 'sometimes active' knap (skifter scene)
+// Håndter tryk på 'Sometimes active' knap 
 function handleSometimesActiveBtn() {
   const next = sceneData[currentScene]?.sometimesActive?.nextScene;
   if (next) {
@@ -222,91 +223,60 @@ function handleSometimesActiveBtn() {
   }
 }
 
-// Funktion som indlæser en scene ud fra scenens nummer og opdaterer video og knapper på skærmen
+
+/* --------------- FUNKTIONER: Indlæs scener --------------- */
+
 function loadScene(sceneNumber) {
   const scene = sceneData[sceneNumber];
-  if (!scene) return; // Stop funktionen hvis scenen ikke findes
+  if (!scene) return;                              // Stop funktionen hvis scenen ikke
 
   // Skjul alle relevante elementer først
   document.querySelectorAll('.content-container p, .content-container img').forEach(el => {
-    el.style.display = 'none'; // Skjul alle p'er og billeder
+    el.style.display = 'none';                     // Skjul alle p'er og billeder (skal kun vises i bestemt scene)
   });
 
-  // Vis de ønskede elementer for den aktuelle scene
+  // Vis ønskede elementer hvis defineret
   if (scene.showElements) {
     scene.showElements.forEach(id => {
       const element = document.getElementById(id);
-      if (element) {
-        element.style.display = 'block'; // Vis elementet
-      }
+      if (element) element.style.display = 'block'; // Vis elementet i aktuel scene, hvor den er defineret
     });
   }
-  
 
-  
-
-  // Opdater videoelementet med den nye scenes video
+  // Opdater video
   videoElement.src = scene.video;
   videoElement.play();
 
-  // Hent billede og tekst-elementerne fra active-knappen
+  // 'Active' knap - Hent billede og tekst-elementerne
   const activeImg = activeBtn.querySelector('img');
   const activeLabel = activeBtn.querySelector('.button-label');
-  
+
   if (scene.active) {
-    activeBtn.style.display = 'flex'; // Vis knappen (hvis den er skjult)
-
-    // Vis og opdater ikon, hvis det findes
-    if (scene.active.icon) {
-      activeImg.style.display = 'inline';
-      activeImg.src = scene.active.icon;
+    activeBtn.style.display = 'flex';                                    // Vis knappen (hvis den er skjult)
+    activeImg.style.display = scene.active.icon ? 'inline' : 'none';
+    if (scene.active.icon) activeImg.src = scene.active.icon;            // Vis og opdater ikon og tekst, hvis det findes
+    activeLabel.textContent = scene.active.label || ''; 
+    if (scene.active.active === false) {                                 
+      activeBtn.classList.add('inactive');                               // Tilføj class="inactive" hvis active=false (knappen bliver grå)
+      activeBtn.classList.remove('active');                              // Fjern active styling
+      activeBtn.disabled = true;                                         // Deaktiver klik
     } else {
-      activeImg.style.display = 'none';
-    }
-
-    // Vis og opdater tekst, hvis den findes
-    if (scene.active.label) {
-      activeLabel.textContent = scene.active.label;
-    } else {
-      activeLabel.textContent = '';
-    }
-
-    // Tjek om knappen skal være inaktiv
-    if (scene.active.active === false) {
-      activeBtn.classList.add('inactive');     // Gør knappen grå
-      activeBtn.classList.remove('active');    // Fjern evt. aktiv styling
-      activeBtn.disabled = true;               // Deaktiver klik
-    } else {
-      activeBtn.classList.remove('inactive');  // Gør knappen hvid
-      activeBtn.disabled = false;              // Gør klik muligt
+      activeBtn.classList.remove('inactive');                            // Fjern class="inactive" (knappen bliver hvid)
+      activeBtn.disabled = false;                                        // Gør klik muligt
     }
   } else {
-    activeBtn.style.display = 'none'; // Skjul knappen helt hvis den ikke bruges i scenen
+    activeBtn.style.display = 'none';                                    // Skjul knappen helt hvis, findes ikke
   }
 
-  // Hent billede og tekst-elementerne fra sometimes-active knappen
+  // Sometimes-active knap
   const sometimesImg = sometimesActiveBtn.querySelector('img');
   const sometimesLabel = sometimesActiveBtn.querySelector('.button-label');
 
   if (scene.sometimesActive) {
     sometimesActiveBtn.style.display = 'flex';
-
-    // Vis og opdater ikon, hvis det findes
-    if (scene.sometimesActive.icon) {
-      sometimesImg.style.display = 'inline';
-      sometimesImg.src = scene.sometimesActive.icon;
-    } else {
-      sometimesImg.style.display = 'none';
-    }
-
-    // Vis og opdater tekst, hvis den findes
-    if (scene.sometimesActive.label) {
-      sometimesLabel.textContent = scene.sometimesActive.label;
-    } else {
-      sometimesLabel.textContent = '';
-    }
-
-    // Tjek om knappen skal være inaktiv
+    sometimesImg.style.display = scene.sometimesActive.icon ? 'inline' : 'none';
+    if (scene.sometimesActive.icon) sometimesImg.src = scene.sometimesActive.icon;
+    sometimesLabel.textContent = scene.sometimesActive.label || '';
     if (scene.sometimesActive.active === false) {
       sometimesActiveBtn.classList.add('inactive');
       sometimesActiveBtn.disabled = true;
@@ -315,61 +285,45 @@ function loadScene(sceneNumber) {
       sometimesActiveBtn.disabled = false;
     }
   } else {
-    sometimesActiveBtn.style.display = 'none'; // Skjul knappen helt hvis den ikke bruges i scenen
+    sometimesActiveBtn.style.display = 'none';
   }
 }
 
-// --------------- EVENT LISTENERS ---------------
 
-// Lytter efter klik på startknap for at starte spillet
-startButton.addEventListener('click', startCallPage);
+/* --------------- FUNKTIONER: Afslutninger --------------- */
 
-// Lytter efter klik på afvis knap på opkaldsside
-declineButton.addEventListener('click', declineCall);
-
-// Lytter efter klik på accept knap på opkaldsside
-acceptButton.addEventListener('click', acceptCall);
-
-// Lytter efter klik på afvis knap i telefoninterface
-declineBtn.addEventListener('click', declineFromPhone);
-
-// Lytter efter klik på aktiv knap i telefoninterface
-activeBtn.addEventListener('click', handleActiveBtn);
-
-// Lytter efter klik på sometimes-active knap i telefoninterface
-sometimesActiveBtn.addEventListener('click', handleSometimesActiveBtn);
-
-// --------------- AFSLUTNINGER ---------------
-
-function loadEnding(endingNumber) {
+/**
+ * Indlæs afslutning baseret på afslutningsnummer
+ * Hent elementer fra HTML (.ending)
+ */
+function loadEnding(endingNumber) {                               
   const alarmIcon = document.getElementById("alarmIcon");
   const mainText = document.getElementById("mainText");
   const playAgainLink = document.getElementById("playAgainLink");
   const learnMoreLink = document.getElementById("learnMoreLink");
   const smallHeadingTitle = document.getElementById("smallHeadingTitle");
   const smallHeadingList = document.getElementById("smallHeadingList");
-  const overfold = document.querySelector(".overfold");
+  
+  // Afslutning 1 - Se HTML id="decline-message" (linje #)
 
-  if (endingNumber === 1) {
-    overfold.innerHTML = `
-      <div class="main-box">
-        <p class="main-text">Der er gået 3 dage. Nu ringer telefonen igen... Det ser ud til, at nogen gerne vil have fat i dig.</p>
-      </div>
-    `;
-    return;
-  }
-
+  // Afslutning 2 - Tillykke, du afslørede svindleren!
   if (endingNumber === 2) {
+    // Alarm ikon med farve der indikerer brugerens præstation i spillet
     alarmIcon.src = "icons/alarm-green.svg";
     mainText.textContent = "Tillykke – du har afsløret svindleren! Du gjorde det helt rigtige.";
+    // Link til at starte forfra eller læse mere om social engineering og vishing
     playAgainLink.textContent = "Spil igen og se hvordan dine valg kunne have påvirket udfaldet.";
     learnMoreLink.textContent = "Læs mere om social engineering og hvordan du beskytter dine pårørende";
-    smallHeadingTitle.textContent = "Perfekt håndteret!";
+    // Bruger-feedback
+    smallHeadingTitle.textContent = "Perfekt håndteret!";                                                                               
     smallHeadingList.innerHTML = `
       <li>Du holdt hovedet koldt, stillede de rigtige spørgsmål og afslørede svindlen.</li><br>
       <li>Du reagerede, som man bør – og det er præcis sådan, du kan beskytte dig selv og andre i fremtiden. Del gerne din viden!</li>
     `;
-  } else if (endingNumber === 3) {
+  } 
+
+  // Afslutning 3 - Tillykke - du har afsløret svindleren! Men det var lige ved at gå galt.
+  else if (endingNumber === 3) {
     alarmIcon.src = "icons/alarm-yellow.svg";
     mainText.textContent = "Tillykke – du har afsløret svindleren! Men det var lige ved at gå galt.";
     playAgainLink.textContent = "Spil igen og se hvordan dine valg kunne have påvirket udfaldet.";
@@ -379,7 +333,10 @@ function loadEnding(endingNumber) {
       <li>Du forholdt dig kritisk og stillede spørgsmål</li><br>
       <li>Stop op og dobbelttjek, hvis noget føles forkert</li>
     `;
-  } else if (endingNumber === 4) {
+  } 
+  
+  // Afslutning 4 - Dine penge er nu væk. Svindleren har tømt din konto. 
+  else if (endingNumber === 4) {
     alarmIcon.src = "icons/alarm-red.svg";
     mainText.textContent = "Dine penge er nu væk. Svindleren har tømt din konto. Dette kunne være sket i virkeligheden.";
     playAgainLink.textContent = "Spil igen og prøv at afsløre svindleren";
@@ -392,51 +349,66 @@ function loadEnding(endingNumber) {
   }
 }
 
-// --------------- TILFØJ EN NY FUNKTION TIL BRUGERINPUT ---------------
 
-// --------------- TILFØJ EN NY FUNKTION TIL BRUGERINPUT ---------------
-
-// Denne funktion håndterer brugerens input (JA/NEJ)
+/* --------------- FUNKTIONER: Inputfelt i scene 6 --------------- */
+/**
+ * Håndterer brugerens input i scene 6.
+ * Hvis brugeren indtaster 'JA', vises afslutning 4.
+ * Hvis brugeren indtaster 'NEJ', vises afslutning 3.
+ * Ved andet input vises en advarselsbesked.
+ */
 function handleUserInput() {
-  // Lyt efter tastetryk i inputfeltet
   userInput.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') { // Når Enter trykkes
-      const input = userInput.value.trim().toUpperCase(); // Få input og konverter til store bogstaver
-
+    if (event.key === 'Enter') {
+      const input = userInput.value.trim().toUpperCase();
       if (input === 'JA') {
-        phoneInterface.style.display = 'none'; // Skjul telefoninterface
-        endingPage.style.display = 'block';    // Vis afslutningsside
-        loadEnding(4); // Hvis bruger skriver JA, indlæses afslutning 4
-      } else if (input === 'NEJ') {
+        // Brugeren bekræfter overførsel - vis afslutning 4
         phoneInterface.style.display = 'none';
         endingPage.style.display = 'block';
-        loadEnding(3); // Hvis bruger skriver NEJ, indlæses afslutning 3
+        loadEnding(4);
+      } else if (input === 'NEJ') {
+        // Brugeren afviser overførsel - vis afslutning 3
+        phoneInterface.style.display = 'none';
+        endingPage.style.display = 'block';
+        loadEnding(3);
       } else {
-        alert("Skriv venligst JA eller NEJ."); // Hvis input er noget andet
+        // Ugyldigt input - vis advarselsbesked
+        alert("Skriv venligst JA eller NEJ.");
       }
     }
   });
 }
 
 
-// Kald denne funktion når siden indlæses
+/* --------------- EVENT LISTENERS --------------- */
+
+startButton.addEventListener('click', startCallPage);                      // Lytter efter klik på startknap for at starte spillet
+declineButton.addEventListener('click', declineCall);                      // Lytter efter klik på 'decline' knap på opkaldsside
+acceptButton.addEventListener('click', acceptCall);                        // Lytter efter klik på 'accept' knap på opkaldsside
+declineBtn.addEventListener('click', declineFromPhone);                    // Lytter efter klik på 'decline' knap i telefoninterface
+activeBtn.addEventListener('click', handleActiveBtn);                      // Lytter efter klik på 'active' knap i telefoninterface
+sometimesActiveBtn.addEventListener('click', handleSometimesActiveBtn);    // Lytter efter klik på 'sometimes-active' knap i telefoninterface
+
+
+// Start input-funktionen
 handleUserInput();
 
 // Gør det muligt at starte forfra fra enhver afslutning
 document.getElementById("playAgainLink").addEventListener("click", function () {
-  // Nulstil state
-  currentScene = 1;
-  hasDeclinedOnce = false;
-
-  // Skjul afslutningsside og vis intro igen
-  endingPage.style.display = "none";
-  introPage.style.display = "block";
-
-  // Skjul eventuelle ekstra elementer fra tidligere scener
-  document.querySelectorAll('.content-container p, .content-container img').forEach(el => {
-    el.style.display = 'none';
+    // Nulstil state
+    currentScene = 1;
+    hasDeclinedOnce = false;
+  
+    // Skjul afslutningsside og vis intro igen
+    endingPage.style.display = "none";
+    introPage.style.display = "block";
+  
+    // Skjul eventuelle ekstra elementer fra tidligere scener
+    document.querySelectorAll('.content-container p, .content-container img').forEach(el => {
+      el.style.display = 'none';
+    });
+  
+    // Ryd inputfeltet hvis det blev brugt
+    userInput.value = '';
   });
 
-  // Ryd inputfeltet hvis det blev brugt
-  userInput.value = '';
-});
