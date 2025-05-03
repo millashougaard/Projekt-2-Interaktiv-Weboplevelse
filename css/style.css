@@ -303,14 +303,14 @@ main {
 }
 
 /* Video Styling */
-.video-container {
+.content-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
 }
-.video-container video {
-  width: 40%;
+.content-container video {
+  width: 40px;
   height: auto;
 }
 
@@ -349,9 +349,6 @@ main {
   position: absolute;
   top: -40px;
   right: -40px;
-}
-.ending .main-box .icon-box img {
-  width: 200px;
 }
 .ending .main-box .tips-box {
   position: absolute;
