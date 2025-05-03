@@ -383,3 +383,21 @@ function loadEnding(endingNumber) {
     `;
   }
 }
+
+// --------------- TILFØJ EN NY FUNKTION TIL BRUGERINPUT ---------------
+
+// Denne funktion håndterer brugerens input (JA/NEJ)
+function handleUserInput() {
+  // Lyt efter klik på knappen "Send"
+  document.getElementById('submitAnswer').addEventListener('click', function() {
+    const userInput = document.getElementById('userInput').value.trim().toUpperCase(); // Få input og konverter til store bogstaver
+    
+    if (userInput === 'JA') {
+      loadEnding(2); // Hvis bruger skriver JA, indlæses afslutning 2
+    } else if (userInput === 'NEJ') {
+      loadEnding(3); // Hvis bruger skriver NEJ, indlæses afslutning 3
+    } else {
+      alert("Skriv venligst JA eller NEJ."); // Hvis input er noget andet
+    }
+  });
+}

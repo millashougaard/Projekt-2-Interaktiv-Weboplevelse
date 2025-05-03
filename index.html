@@ -69,13 +69,13 @@
     <div class="content-container">
       <video src="videos/ny.mp4" autoplay></video>
 
-      <p class="netbank-info" style="display: none;">
+      <p id="netbank-info" style="display: none;">
         Du er nu logget på din Netbank.<br> 
         Heldigvis er der ingen transaktioner, du ikke kender til.</p>
 
       <img id="nordeaMobile" src="img/NordeaMobile.png" alt="Konto oversigt på mobil bank" style="display: none;"> 
 
-      <p class="sms" style="display: none;">
+      <p id="sms" style="display: none;">
         Nordea har netop registreret at du er i gang med at 
         fortage en større overførsel. Du har derfor modtaget
         følgende SMS.<br> 
@@ -83,6 +83,12 @@
         Svar JA, hvis den skal gennemføres – NEJ,
         hvis den ikke skal gennemføres.
       </p>
+
+      <div id="userInputContainer">
+        <label for="userInput">Skriv JA eller NEJ:</label>
+        <input type="text" id="userInput" name="userInput" />
+        <button id="submitAnswer">Send</button>
+      </div>
       
       <img id="nordeaSMS" src="img/NordeaSMS.png" alt="Bekræftelses SMS fra Nordea" style="display: none;">
     </div>

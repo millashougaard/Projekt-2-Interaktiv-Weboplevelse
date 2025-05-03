@@ -317,7 +317,7 @@ main {
   box-sizing: border-box;
 }
 .content-container p {
-  max-width: 40%;
+  max-width: 100%;
   font-size: 1.2em;
   line-height: 1.5;
   color: white;
