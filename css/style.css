@@ -177,8 +177,7 @@ main {
 .phone {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 100vh;
 }
 .phone .btn-row {
   display: flex;
@@ -186,6 +185,10 @@ main {
   align-items: center;
   width: 100%;
   gap: 20px;
+  z-index: 1;
+}
+.phone .btn-row.bottom {
+  margin-top: auto;
 }
 .phone .btn-row button {
   background-color: #575654;
@@ -305,12 +308,33 @@ main {
 /* Video Styling */
 .content-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  padding: 2rem;
+  gap: 2rem;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+.content-container p {
+  max-width: 40%;
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: white;
+}
+.content-container img {
+  height: calc(100vh - 100px);
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  position: relative;
+  z-index: 2;
+  margin-left: auto;
+  margin-bottom: -3rem;
 }
 .content-container video {
-  width: 40px;
+  display: block;
+  max-width: 100%;
   height: auto;
 }
 
@@ -349,6 +373,9 @@ main {
   position: absolute;
   top: -40px;
   right: -40px;
+}
+.ending .main-box .icon-box img {
+  width: 200px;
 }
 .ending .main-box .tips-box {
   position: absolute;

@@ -32,20 +32,19 @@ let currentScene = 1; // Den aktuelle scene, som brugeren er på i samtalen
 
 const sceneData = {
   1: {
-    video: 'videos/lyd_1.mp4', // Video til scene 1
+    video: 'videos/lyd_1.mp4',
     active: {
-      icon: 'icons/question.svg', // Aktiv knap ikon
-      label: 'Overhovedet ikke.', // Tekst for aktiv knap
-      nextScene: 2 // Næste scene når aktiv knap trykkes
-      
+      icon: 'icons/question.svg',
+      label: 'Overhovedet ikke.',
+      nextScene: 2
     },
     sometimesActive: {
       icon: null,
       label: null,
       nextScene: 2,
-      active: false // Indikerer at denne knap ikke er aktiv i denne scene
+      active: false
     },
-    declineEnding: 2 // Afslutning hvis brugeren trykker "Læg på"
+    declineEnding: 2
   },
   2: {
     video: 'videos/lyd_2.mp4',
@@ -58,7 +57,7 @@ const sceneData = {
       icon: 'icons/question.svg',
       label: 'Hvad skal det betyde?',
       nextScene: '2.1',
-      active: true // Indikerer at denne knap er aktiv i denne scene
+      active: true
     },
     declineEnding: 2
   },
@@ -73,7 +72,7 @@ const sceneData = {
       icon: null,
       label: null,
       nextScene: 3,
-      active: false 
+      active: false
     },
     declineEnding: 3
   },
@@ -88,7 +87,7 @@ const sceneData = {
       icon: null,
       label: null,
       nextScene: 4,
-      active: false 
+      active: false
     },
     declineEnding: 3
   },
@@ -103,9 +102,10 @@ const sceneData = {
       icon: null,
       label: null,
       nextScene: 5,
-      active: false 
+      active: false
     },
-    declineEnding: 3
+    declineEnding: 3,
+    showElements: ['netbank-info', 'nordeaMobile'] 
   },
   5: {
     video: 'videos/lyd_5.mp4',
@@ -118,7 +118,7 @@ const sceneData = {
       icon: 'icons/question.svg',
       label: 'Hvordan kan jeg vide, hvem jeg taler med lige nu?',
       nextScene: '5.1',
-      active: true 
+      active: true
     },
     declineEnding: 3
   },
@@ -133,7 +133,7 @@ const sceneData = {
       icon: null,
       label: null,
       nextScene: 6,
-      active: false 
+      active: false
     },
     declineEnding: 3
   },
@@ -148,12 +148,13 @@ const sceneData = {
       icon: null,
       label: null,
       nextScene: 7,
-      active: false 
+      active: false
     },
-    declineEnding: 3
-  },
-  // Tilføj flere scener her
+    declineEnding: 3,
+    showElements: ['sms', 'nordeaSMS'] 
+  }
 }
+
 
 // --------------- FUNKTIONER ---------------
 
@@ -220,6 +221,21 @@ function handleSometimesActiveBtn() {
 function loadScene(sceneNumber) {
   const scene = sceneData[sceneNumber];
   if (!scene) return; // Stop funktionen hvis scenen ikke findes
+
+  // Skjul alle relevante elementer først
+  document.querySelectorAll('.content-container p, .content-container img').forEach(el => {
+    el.style.display = 'none'; // Skjul alle p'er og billeder
+  });
+
+  // Vis de ønskede elementer for den aktuelle scene
+  if (scene.showElements) {
+    scene.showElements.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.style.display = 'block'; // Vis elementet
+      }
+    });
+  }
 
   // Opdater videoelementet med den nye scenes video
   videoElement.src = scene.video;
