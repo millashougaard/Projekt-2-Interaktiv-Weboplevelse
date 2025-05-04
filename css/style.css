@@ -3,7 +3,9 @@
 /* Variables */
 /* General Styling */
 /* Grundlæggende styling for hele dokumentet */
-body {
+html, body {
+  height: 100%;
+  overflow: hidden;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -47,7 +49,6 @@ main {
   background-color: transparent;
   border: none;
   padding: 0;
-  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,8 +60,8 @@ main {
 .intro-page .start-button .circle-bg {
   background-color: #A3DC80;
   border-radius: 50%;
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,11 +77,11 @@ main {
 .intro-page .button-label {
   color: white;
   text-align: center;
-  font-size: 1.5em;
-  max-width: 8rem;
-  line-height: 1.2;
-  margin-top: 1em;
   font-size: 2em;
+  max-width: 120px;
+  height: 2.4em;
+  line-height: 1;
+  margin-top: 1em;
 }
 
 /* --------------- Call Header --------------- */
@@ -137,7 +138,6 @@ main {
   background-color: transparent;
   border: none;
   padding: 0;
-  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -147,8 +147,8 @@ main {
 .call-page .call-buttons button .circle-bg {
   background-color: #575654;
   border-radius: 50%;
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,11 +161,11 @@ main {
 .call-page .call-buttons button .button-label {
   color: white;
   text-align: center;
-  font-size: 1.5em;
-  max-width: 8rem;
-  line-height: 1.2;
-  margin-top: 1em;
   font-size: 2em;
+  max-width: 120px;
+  height: 2.4em;
+  line-height: 1;
+  margin-top: 1em;
 }
 .call-page .call-buttons .accept .circle-bg {
   background-color: #A3DC80;
@@ -185,17 +185,23 @@ main {
 }
 .phone .btn-row {
   display: flex;
+  gap: 80px;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  gap: 200px;
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1;
+  width: 100%;
+}
+.phone .btn-row.top {
+  bottom: calc(100px + 180px);
 }
 .phone .btn-row button {
   background-color: transparent;
   border: none;
   padding: 0;
-  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -206,8 +212,8 @@ main {
 .phone .btn-row button .circle-bg {
   background-color: #575654;
   border-radius: 50%;
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -220,9 +226,10 @@ main {
 .phone .btn-row button .button-label {
   color: white;
   text-align: center;
-  font-size: 1.5em;
-  max-width: 8rem;
-  line-height: 1.2;
+  font-size: 2em;
+  max-width: 120px;
+  height: 2.4em;
+  line-height: 1;
   margin-top: 1em;
 }
 .phone .btn-row button.active .circle-bg {
@@ -244,31 +251,57 @@ main {
 /* Content */
 .content-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 40px;
+  gap: 80px;
   width: 100%;
   box-sizing: border-box;
-}
-.content-container p {
-  max-width: 100%;
-  font-size: 1.2em;
-  line-height: 1.5;
-  color: white;
-}
-.content-container img {
-  height: calc(100vh - 100px);
-  width: auto;
-  -o-object-fit: contain;
-     object-fit: contain;
-  position: relative;
-  z-index: 2;
-  margin-left: auto;
-  margin-bottom: -3rem;
+  flex: 1;
 }
 .content-container video {
-  max-width: 40%;
-  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 300px);
+  -o-object-fit: contain;
+     object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.content-container .text-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.content-container .text-side p {
+  width: 100%;
+  font-size: 1.8em;
+  line-height: 1.5;
+  color: white;
+  margin-bottom: 40px;
+}
+.content-container .text-side #userInputContainer label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+.content-container .text-side #userInputContainer input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.2em;
+  border-radius: 8px;
+  border: none;
+}
+.content-container img {
+  flex: 1;
+  max-height: calc(100vh - 300px);
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-left: 40px;
+  display: block;
+  z-index: 2;
+  pointer-events: none;
 }
 
 /* Ending Styling */

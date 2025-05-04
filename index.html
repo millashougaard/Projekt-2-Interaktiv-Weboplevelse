@@ -72,30 +72,31 @@
       <p class="sender">(Nordea)</p>
     </header>
 
-    <div class="content-container">
+    <div id="contentContainer" class="content-container">
       <video src="videos/ny.mp4" autoplay></video>
+    
+      <!-- VENSTRESIDE: p + input -->
+      <div id="textSide" class="text-side" style="display: none;">
+        <p id="netbank-info" style="display: none;">
+          Du er nu logget på din Netbank.<br> 
+          Heldigvis er der ingen transaktioner, du ikke kender til.
+        </p>
 
-      <p id="netbank-info" style="display: none;">
-        Du er nu logget på din Netbank.<br> 
-        Heldigvis er der ingen transaktioner, du ikke kender til.</p>
-
-      <img id="nordeaMobile" src="img/NordeaMobile.png" alt="Konto oversigt på mobil bank" style="display: none;"> 
-
-      <p id="sms" style="display: none;">
-        Nordea har netop registreret at du er i gang med at 
-        fortage en større overførsel. Du har derfor modtaget
-        følgende SMS.<br> 
-        
-        Svar JA, hvis den skal gennemføres – NEJ,
-        hvis den ikke skal gennemføres.
-      </p>
-
-      <div id="userInputContainer">
-        <label for="userInput">Skriv JA eller NEJ:</label>
-        <input type="text" id="userInput" name="userInput" />
+        <p id="sms">
+          Nordea har netop registreret at du er i gang med at 
+          foretage en større overførsel...<br><br> 
+          Svar JA, hvis den skal gennemføres – NEJ, hvis den ikke skal gennemføres.
+        </p>
+    
+        <div id="userInputContainer">
+          <label for="userInput">Skriv JA eller NEJ:</label>
+          <input type="text" id="userInput" name="userInput" />
+        </div>
       </div>
-      
-      <img id="nordeaSMS" src="img/NordeaSMS.png" alt="Bekræftelses SMS fra Nordea" style="display: none;">
+    
+      <!-- HØJRESIDE: Billede -->
+      <img id="nordeaMobile" src="img/NordeaMobile.png" alt="Konto oversigt på mobil bank" style="display: none;">
+      <img id="nordeaSMS" src="img/NordeaSMS.png" alt="Bekræftelses SMS" style="display: none;"> 
     </div>
 
     <div class="btn-row top">

@@ -13,7 +13,9 @@ $spacing: 20px;
 
 /* General Styling */
 /* Grundlæggende styling for hele dokumentet */
-body {
+html, body {
+  height: 100%; // Sørger for at fylde hele skærmen
+  overflow: hidden; // Forhindrer scroll
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -66,7 +68,6 @@ main {
   /* Label-styling for knap */
   .button-label {
       @include buttons.button-label-style;
-      font-size: 2em;
   }
 }
 
@@ -128,7 +129,6 @@ main {
 
           .button-label {
               @include buttons.button-label-style;
-              font-size: 2em;
           }
       }
 
@@ -157,13 +157,22 @@ main {
   flex-direction: column;
   height: 100vh; // Fuld højde for telefonlayoutet
 
+
   .btn-row {
       display: flex;
+      gap: $spacing * 4;
+      flex-wrap: wrap;
       justify-content: center;
-      align-items: flex-start; // Justering af knapperne, så de starter samme sted
+      position: absolute;
+      bottom: $spacing*5;
+      left: 50%;  // Placerer venstre kant af knapperne i midten
+      transform: translateX(-50%);  // Skubber knapperne tilbage med 50% af deres bredde for at centrere
+      z-index: 1;
       width: 100%;
-      gap: $spacing * 10; // Øger afstanden mellem knapperne for at give mere plads
-      z-index: 1; // Sørger for at billeder kan vises over knapperne
+
+      &.top {
+        bottom: calc(#{$spacing * 5} + 180px); // Lige over bottom-rækken
+      }
 
       button {
           @include buttons.phone-button($inactive-btn-color); // Genbrug af mixin
@@ -196,39 +205,71 @@ main {
   }
 }
 
-
-
 /* Content */
 .content-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1; // fylder al plads mellem header og knapper
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: $spacing * 2;
+  gap: $spacing*4;
   width: 100%;
   box-sizing: border-box;
+  flex: 1;
 
-  p {
+  // Når der er VIDEO
+  video {
     max-width: 100%;
-    font-size: 1.2em;
-    line-height: 1.5;
-    color: white;
+    max-height: calc(100vh - 300px);
+    object-fit: contain;
+    display: block; // Kun synlig, hvis JS viser den
+    margin: 0 auto;
+  }
+
+  // Når der IKKE er video (to-sidet layout)
+  .text-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+
+    p {
+      width: 100%;
+      font-size: 1.8em;
+      line-height: 1.5;
+      color: white;
+      margin-bottom: $spacing*2;
+    }
+
+    #userInputContainer {
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: white;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1.2em;
+        border-radius: 8px;
+        border: none;
+      }
+    }
   }
 
   img {
-  height: calc(100vh - 100px); // Fuld højde minus header og lidt margin // Fylder næsten hele skærmhøjden
-  width: auto;
-  object-fit: contain;
-  position: relative;
-  z-index: 2;
-  margin-left: auto;
-  margin-bottom: -3rem; // Dækker knapperne lidt
-  }
-
-  video {
-    max-width: 40%;
-    height: auto;
+    flex: 1;
+    max-height: calc(100vh - 300px);
+    object-fit: contain;
+    margin-left: $spacing * 2;
+    display: block; // Synlig når JS viser den
+    z-index: 2; // Sikrer, at det ligger ovenpå andre elementer
+    pointer-events: none;
   }
 }
+
 
 
 /* Ending Styling */

@@ -112,7 +112,7 @@ const sceneData = {
         active: false
       },
       declineEnding: 3,
-      showElements: ['netbank-info', 'nordeaMobile'] // Henter elementer med id="netbank-info" og "nordeaMobile"
+      showElements: ['netbank-info', 'nordeaMobile', 'textSide'] // Henter elementer med id="netbank-info" og "nordeaMobile"
     },
     5: {
       video: 'videos/scene_5.mov',
@@ -158,7 +158,7 @@ const sceneData = {
         active: false
       },
       declineEnding: 3,
-      showElements: ['sms', 'nordeaSMS'] // Henter elementer med id="sms" og "nordeaSMS"
+      showElements: ['sms', 'nordeaSMS', 'textSide'] // Henter elementer med id="sms" og "nordeaSMS"
     }
   }
 
@@ -228,18 +228,20 @@ function handleSometimesActiveBtn() {
 
 function loadScene(sceneNumber) {
   const scene = sceneData[sceneNumber];
-  if (!scene) return;                              // Stop funktionen hvis scenen ikke
+  if (!scene) return; // Stop hvis scenen ikke findes
 
   // Skjul alle relevante elementer først
-  document.querySelectorAll('.content-container p, .content-container img').forEach(el => {
-    el.style.display = 'none';                     // Skjul alle p'er og billeder (skal kun vises i bestemt scene)
+  const elementsToHide = ['netbank-info', 'sms', 'nordeaMobile'];
+  elementsToHide.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) element.style.display = 'none';
   });
 
-  // Vis ønskede elementer hvis defineret
+  // Vis kun de elementer, som skal vises i denne scene
   if (scene.showElements) {
     scene.showElements.forEach(id => {
       const element = document.getElementById(id);
-      if (element) element.style.display = 'block'; // Vis elementet i aktuel scene, hvor den er defineret
+      if (element) element.style.display = 'block';
     });
   }
 
@@ -419,3 +421,4 @@ document.getElementById("playAgainLink").addEventListener("click", function () {
     userInput.value = '';
   });
 
+  
