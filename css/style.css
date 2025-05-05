@@ -248,60 +248,74 @@ main {
   pointer-events: none;
 }
 
-/* Content */
 .content-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: stretch;
   padding: 40px;
-  gap: 80px;
-  width: 100%;
   box-sizing: border-box;
-  flex: 1;
+  width: 100%;
+  height: 100%;
 }
 .content-container video {
-  max-width: 100%;
-  max-height: calc(100vh - 300px);
-  -o-object-fit: contain;
-     object-fit: contain;
+  max-width: 60%;
+  height: auto;
   display: block;
-  margin: 0 auto;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80%);
 }
-.content-container .text-side {
-  flex: 1;
+.content-container #userInputContainer {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: flex-start;
 }
-.content-container .text-side p {
-  width: 100%;
-  font-size: 1.8em;
-  line-height: 1.5;
-  color: white;
-  margin-bottom: 40px;
-}
-.content-container .text-side #userInputContainer label {
+.content-container #userInputContainer label {
   display: block;
+  margin-top: 4rem;
   margin-bottom: 0.5rem;
   color: white;
 }
-.content-container .text-side #userInputContainer input {
-  width: 100%;
+.content-container #userInputContainer input {
+  width: 55%;
   padding: 0.5rem;
   font-size: 1.2em;
   border-radius: 8px;
   border: none;
 }
-.content-container img {
+.content-container .text-side {
   flex: 1;
-  max-height: calc(100vh - 300px);
+  max-width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 5rem;
+  padding-left: 3rem;
+  gap: 1.5rem;
+}
+.content-container .text-side p {
+  font-size: 1.8em;
+  line-height: 1.5;
+  color: white;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+.content-container .image-side {
+  flex: 1;
+  max-width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.content-container .image-side img {
+  max-height: calc(100vh - 5px);
   -o-object-fit: contain;
      object-fit: contain;
-  margin-left: 40px;
-  display: block;
-  z-index: 2;
-  pointer-events: none;
+  transform: translateY(-220px);
 }
 
 /* Ending Styling */

@@ -72,31 +72,33 @@
       <p class="sender">(Nordea)</p>
     </header>
 
-    <div id="contentContainer" class="content-container">
+    <div id="content-container" class="content-container">
       <video src="videos/ny.mp4" autoplay></video>
+
+      <div id="userInputContainer">
+        <label for="userInput">Skriv JA eller Nej:</label>
+        <input type="text" id="userInput" name="userInput" />
+      </div>
     
       <!-- VENSTRESIDE: p + input -->
-      <div id="textSide" class="text-side" style="display: none;">
-        <p id="netbank-info" style="display: none;">
+      <div id="textSide" class="text-side">
+        <p id="netbank-info">
           Du er nu logget på din Netbank.<br> 
           Heldigvis er der ingen transaktioner, du ikke kender til.
         </p>
 
         <p id="sms">
           Nordea har netop registreret at du er i gang med at 
-          foretage en større overførsel...<br><br> 
+          foretage en større overførsel. Du har derfor modtaget følgende SMS.<br><br> 
           Svar JA, hvis den skal gennemføres – NEJ, hvis den ikke skal gennemføres.
         </p>
-    
-        <div id="userInputContainer">
-          <label for="userInput">Skriv JA eller NEJ:</label>
-          <input type="text" id="userInput" name="userInput" />
-        </div>
       </div>
     
       <!-- HØJRESIDE: Billede -->
+    <div class="image-side">
       <img id="nordeaMobile" src="img/NordeaMobile.png" alt="Konto oversigt på mobil bank" style="display: none;">
       <img id="nordeaSMS" src="img/NordeaSMS.png" alt="Bekræftelses SMS" style="display: none;"> 
+    </div>
     </div>
 
     <div class="btn-row top">
