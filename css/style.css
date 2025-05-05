@@ -246,6 +246,8 @@ main {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  /* ----------- Knap-rækker (fælles for alle scener) ----------- */
+  /* ----------- Indholdsområde: video, tekst, input og billede ----------- */
 }
 .phone .btn-row {
   display: flex;
@@ -261,6 +263,7 @@ main {
 }
 .phone .btn-row.top {
   bottom: calc(100px + 180px);
+  pointer-events: none;
 }
 .phone .btn-row button {
   background-color: transparent;
@@ -271,7 +274,6 @@ main {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  /* Farver og tilstande for forskellige knapper */
 }
 .phone .btn-row button .circle-bg {
   background-color: #575654;
@@ -326,18 +328,20 @@ main {
 .phone .btn-row button.inactive {
   pointer-events: none;
 }
-
-.content-container {
+.phone .content-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: stretch;
   padding: 40px;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  /* ----------- Tekst og input-felt (venstre side) ----------- */
+  /* ----------- Billedvisning (højre side) ----------- */
 }
-.content-container video {
+.phone .content-container video {
   max-width: 60%;
   height: auto;
   display: block;
@@ -347,25 +351,17 @@ main {
   left: 50%;
   transform: translate(-50%, -80%);
 }
-.content-container #userInputContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+@media (max-width: 600px) {
+  .phone .content-container video {
+    max-width: 100%;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-top: 1rem;
+  }
 }
-.content-container #userInputContainer label {
-  display: block;
-  margin-top: 4rem;
-  margin-bottom: 0.5rem;
-  color: white;
-}
-.content-container #userInputContainer input {
-  width: 55%;
-  padding: 0.5rem;
-  font-size: 1.2em;
-  border-radius: 8px;
-  border: none;
-}
-.content-container .text-side {
+.phone .content-container .text-side {
   flex: 1;
   max-width: 60%;
   display: flex;
@@ -375,7 +371,7 @@ main {
   padding-left: 3rem;
   gap: 1.5rem;
 }
-.content-container .text-side p {
+.phone .content-container .text-side p {
   font-size: 1.8em;
   line-height: 1.5;
   color: white;
@@ -383,18 +379,87 @@ main {
   max-width: 100%;
   margin: 0;
 }
-.content-container .image-side {
+@media (max-width: 600px) {
+  .phone .content-container .text-side p {
+    font-size: 1.2em;
+    text-align: left;
+  }
+}
+@media (max-width: 600px) {
+  .phone .content-container .text-side {
+    max-width: 100%;
+    align-items: center;
+    padding-left: 0;
+    padding-top: 2rem;
+  }
+}
+.phone .content-container .text-side #userInputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.phone .content-container .text-side #userInputContainer label {
+  display: block;
+  margin-top: 4rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+@media (max-width: 600px) {
+  .phone .content-container .text-side #userInputContainer label {
+    margin-top: 2rem;
+    text-align: center;
+  }
+}
+.phone .content-container .text-side #userInputContainer input {
+  padding: 0.5rem;
+  font-size: 1.2em;
+  border-radius: 8px;
+  border: none;
+}
+@media (max-width: 600px) {
+  .phone .content-container .text-side #userInputContainer input {
+    width: 90%;
+    font-size: 1em;
+  }
+}
+@media (max-width: 600px) {
+  .phone .content-container .text-side #userInputContainer {
+    width: 100%;
+    align-items: center;
+  }
+}
+.phone .content-container .image-side {
   flex: 1;
   max-width: 40%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
-.content-container .image-side img {
+.phone .content-container .image-side img {
   max-height: calc(100vh - 5px);
   -o-object-fit: contain;
      object-fit: contain;
   transform: translateY(-220px);
+}
+@media (max-width: 600px) {
+  .phone .content-container .image-side img {
+    max-width: 90%;
+    max-height: 40vh;
+    transform: none;
+  }
+}
+@media (max-width: 600px) {
+  .phone .content-container .image-side {
+    max-width: 100%;
+    justify-content: center;
+  }
+}
+@media (max-width: 600px) {
+  .phone .content-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
 }
 
 /* Ending Styling */

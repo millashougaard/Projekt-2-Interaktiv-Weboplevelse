@@ -179,134 +179,191 @@ main {
   flex-direction: column;
   height: 100vh; // Fuld højde for telefonlayoutet
 
-
+  /* ----------- Knap-rækker (fælles for alle scener) ----------- */
   .btn-row {
-      display: flex;
-      gap: partial.$spacing * 4;
-      flex-wrap: wrap;
-      justify-content: center;
-      position: absolute;
-      bottom: partial.$spacing*5;
-      left: 50%;  // Placerer venstre kant af knapperne i midten
-      transform: translateX(-50%);  // Skubber knapperne tilbage med 50% af deres bredde for at centrere
-      z-index: 1;
-      width: 100%;
-
-      &.top {
-        bottom: calc(#{partial.$spacing * 5} + 180px); // Lige over bottom-rækken
-      }
-
-      button {
-          @include partial.phone-button(partial.$inactive-btn-color); // Genbrug af mixin
-
-          .button-label {
-              @include partial.button-label-style; // Genbrug af label-styling
-          }
-
-          /* Farver og tilstande for forskellige knapper */
-          &.active .circle-bg {
-              background-color: partial.$active-btn-color;
-          }
-
-          &.decline .circle-bg {
-              background-color: partial.$decline-btn-color;
-          }
-
-          &.sometimes-active .circle-bg {
-              background-color: partial.$active-btn-color;
-          }
-
-          &.sometimes-active.inactive .circle-bg { 
-              background-color: partial.$inactive-btn-color; // Tilføj inactive class når knappen er inactive
-          }
-
-          &.inactive {
-              pointer-events: none; // Deaktiverer klik på inaktive knapper
-          }
-      }
-  }
-}
-
-.content-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch; // ændret fra center
-  padding: partial.$spacing * 2;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-
-  // CENTRER VIDEO I MIDTEN AF SKÆRM
-  video {
-    max-width: 60%;
-    height: auto;
-    display: block;
-    margin: auto; // centrer både vertikalt og horisontalt
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -80%);
-  }
-
-  #userInputContainer {
     display: flex;
-    flex-direction: column; // placer label over input
-    align-items: flex-start; // venstrestil
-
-    label {
-      display: block; // gør label til en blok, så den fylder hele linjen
-      margin-top: 4rem;
-      margin-bottom: 0.5rem;
-      color: white;
-    }
-
-    input {
-      width: 55%;
-      padding: 0.5rem;
-      font-size: 1.2em;
-      border-radius: 8px;
-      border: none;
-    }
-  }
-
-  // VENSTRE SIDE (tekst + input)
-  .text-side {
-    flex: 1;
-    max-width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 5rem; // skubber teksten op
-    padding-left: 3rem;
-    gap: 1.5rem;
-
-    p {
-      font-size: 1.8em;
-      line-height: 1.5;
-      color: white;
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-    }
-  }
-
-  // HØJRE SIDE (billede)
-  .image-side {
-    flex: 1;
-    max-width: 40%;
-    display: flex;
+    gap: partial.$spacing * 4;
+    flex-wrap: wrap; // Tillader knapper at rykke ned på flere linjer
     justify-content: center;
-    align-items: flex-start;
+    position: absolute;
+    bottom: partial.$spacing * 5;
+    left: 50%; // Placerer venstre kant af knapperne i midten
+    transform: translateX(-50%); // Skubber knapperne tilbage med 50% af deres bredde for at centrere
+    z-index: 1; // Sørger for at knapperne ligger øverst
+    width: 100%;
 
-    img {
-      max-height: calc(100vh - 5px);
-      object-fit: contain;
-      transform: translateY(-220px);
+    &.top {
+      bottom: calc(#{partial.$spacing * 5} + 180px); // Position lidt over bund-knapperne
+      pointer-events: none; // Gør det muligt at interagere med bagvedliggende elementer (input)
+    }
+
+    button {
+      @include partial.phone-button(partial.$inactive-btn-color); // Reusable mixin til knapstil
+
+      .button-label {
+        @include partial.button-label-style; // Fælles styling til knaptekster
+      }
+
+      // Farveændringer for knap-tilstande
+      &.active .circle-bg {
+        background-color: partial.$active-btn-color;
+      }
+
+      &.decline .circle-bg {
+        background-color: partial.$decline-btn-color;
+      }
+
+      &.sometimes-active .circle-bg {
+        background-color: partial.$active-btn-color;
+      }
+
+      &.sometimes-active.inactive .circle-bg {
+        background-color: partial.$inactive-btn-color; // Hvis knap er inaktiv, får den en anden farve
+      }
+
+      &.inactive {
+        pointer-events: none; // Deaktiverer klik på inaktive knapper
+      }
+    }
+  }
+
+  /* ----------- Indholdsområde: video, tekst, input og billede ----------- */
+  .content-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: stretch;
+    padding: partial.$spacing * 2;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+
+    // ----------- Videoelement centreres absolut og fylder maks 60% af bredde -----------
+    video {
+      max-width: 60%;
+      height: auto;
+      display: block;
+      margin: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -80%); // Visuelt center over midten
+
+      @include partial.respond-to(mobile) {
+        max-width: 100%;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin-top: 1rem;
+      }
+    }
+
+    /* ----------- Tekst og input-felt (venstre side) ----------- */
+    .text-side {
+      flex: 1;
+      max-width: 60%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 5rem;
+      padding-left: 3rem;
+      gap: 1.5rem;
+
+      // Paragraf-tekst vises som instruktiv besked
+      p {
+        font-size: 1.8em;
+        line-height: 1.5;
+        color: white;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+
+        @include partial.respond-to(mobile) {
+          font-size: 1.2em;
+          text-align: left;
+        }
+      }
+
+      @include partial.respond-to(mobile) {
+        max-width: 100%;
+        align-items: center;
+        padding-left: 0;
+        padding-top: 2rem;
+      }
+
+      // Inputcontainer (label + input)
+      #userInputContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        label {
+          display: block;
+          margin-top: 4rem;
+          margin-bottom: 0.5rem;
+          color: white;
+
+          @include partial.respond-to(mobile) {
+            margin-top: 2rem;
+            text-align: center;
+          }
+        }
+
+        input {
+          padding: 0.5rem;
+          font-size: 1.2em;
+          border-radius: 8px;
+          border: none;
+
+          @include partial.respond-to(mobile) {
+            width: 90%;
+            font-size: 1em;
+          }
+        }
+
+        @include partial.respond-to(mobile) {
+          width: 100%;
+          align-items: center;
+        }
+      }
+    }
+
+    /* ----------- Billedvisning (højre side) ----------- */
+    .image-side {
+      flex: 1;
+      max-width: 40%; // Resten af pladsen
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+
+      img {
+        max-height: calc(100vh - 5px); // Sikrer billedet ikke fylder for meget
+        object-fit: contain; // Bevarer billedets proportioner
+        transform: translateY(-220px); // Løfter billedet opad
+
+        @include partial.respond-to(mobile) {
+          max-width: 90%;
+          max-height: 40vh;
+          transform: none;
+        }
+      }
+
+      @include partial.respond-to(mobile) {
+        max-width: 100%;
+        justify-content: center;
+      }
+    }
+
+    // Overordnet tilpasning til små skærme
+    @include partial.respond-to(mobile) {
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
     }
   }
 }
-
 
 
 

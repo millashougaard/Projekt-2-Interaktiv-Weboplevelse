@@ -112,7 +112,7 @@ const sceneData = {
         active: false
       },
       declineEnding: 3,
-      showElements: ['netbank-info', 'nordeaMobile', 'textSide'] // Henter elementer med id="netbank-info" og "nordeaMobile"
+      showElements: ['netbank-info', 'nordeaMobile'] // Henter elementer med id="netbank-info" og "nordeaMobile"
     },
     5: {
       video: 'videos/scene_5.mov',
@@ -158,7 +158,7 @@ const sceneData = {
         active: false
       },
       declineEnding: 3,
-      showElements: ['sms', 'nordeaSMS', 'textSide'] // Henter elementer med id="sms" og "nordeaSMS"
+      showElements: ['sms', 'nordeaSMS'] // Henter elementer med id="sms" og "nordeaSMS"
     }
   }
 
