@@ -1,15 +1,4 @@
-@use 'buttons';
-
-/* Variables */
-$box-color: #D9D9D9;
-$active-btn-color: #FFFF;
-$inactive-btn-color: #575654;
-$accept-btn-color: #A3DC80; 
-$decline-btn-color: #FF453A; 
-$bg-color: #32302D;
-$font-family: 'Inter', sans-serif;
-$border-radius: 50px;
-$spacing: 20px;
+@use 'partial';
 
 /* General Styling */
 /* Grundlæggende styling for hele dokumentet */
@@ -19,7 +8,7 @@ html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: $font-family; // Bruger en global font fra variablerne
+  font-family: partial.$font-family; // Bruger en global font fra variablerne
 }
 
 /* Main layout for hele scenariet */
@@ -29,8 +18,8 @@ main {
   align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
-  background-color: $bg-color; // Baggrundsfarve for hele siden
-  padding: $spacing; // Standard padding
+  background-color: partial.$bg-color; // Baggrundsfarve for hele siden
+  padding: partial.$spacing; // Standard padding
 }
 
 /* --------------- Intro Page --------------- */
@@ -38,7 +27,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: $spacing*3;
+  margin-top: partial.$spacing*3;
 
 
   h1 {
@@ -47,19 +36,19 @@ main {
       color: white;
   }
   .intro-box {
-      background-color: $box-color;
+      background-color: partial.$box-color;
       color: black;
-      border-radius: $border-radius;
+      border-radius: partial.$border-radius;
       max-width: 900px;
-      padding: $spacing * 2;
+      padding: partial.$spacing * 2;
       font-size: 1.8em; 
   }
 
   /* Start knap-styling */
   .start-button {
-      @include buttons.phone-button($accept-btn-color); // Genbruger mixin for telefonknappen
+      @include partial.phone-button(partial.$accept-btn-color); // Genbruger mixin for telefonknappen
       position: absolute; // Bruges til at placere knapperne nederst på skærmen
-      bottom: $spacing*5; // Juster afstanden fra bunden af skærmen
+      bottom: partial.$spacing*5; // Juster afstanden fra bunden af skærmen
       img {
           transform: rotate(225deg); /* Roterer mobil-ikonet */
       }
@@ -67,7 +56,7 @@ main {
 
   /* Label-styling for knap */
   .button-label {
-      @include buttons.button-label-style;
+      @include partial.button-label-style;
   }
 }
 
@@ -75,21 +64,21 @@ main {
 .call-header {
   text-align: center;
   color: white;
-  margin-top: $spacing*1.5;
+  margin-top: partial.$spacing*1.5;
 
   .call-title {
       font-size: 1.2em;
-      margin-bottom: $spacing;
+      margin-bottom: partial.$spacing;
   }
 
   .phone-number {
       font-size: 2.8em;
-      margin: $spacing;
+      margin: partial.$spacing;
   }
 
   .sender {
       font-size: 1.2em;
-      margin-top: $spacing;
+      margin-top: partial.$spacing;
   }
 }
 
@@ -102,40 +91,40 @@ main {
   justify-content: flex-start;
 
   .decline-message {
-      background-color: $box-color;  
+      background-color: partial.$box-color;  
       color: black;
-      border-radius: $border-radius;
+      border-radius: partial.$border-radius;
       max-width: 850px;
-      padding: $spacing * 2; // Tilføjer padding direkte på <p> og giver den $box-color
-      margin-top: $spacing*6;
+      padding: partial.$spacing * 2; // Tilføjer padding direkte på <p> og giver den $box-color
+      margin-top: partial.$spacing*6;
       font-size: 1.8em;
       text-align: center;  
   }
 
   .call-buttons {
       display: flex;
-      gap: $spacing * 15;
+      gap: partial.$spacing * 15;
       flex-wrap: wrap;
       justify-content: center;
       position: absolute;
-      bottom: $spacing*5;
+      bottom: partial.$spacing*5;
       left: 50%;  // Placerer venstre kant af knapperne i midten
       transform: translateX(-50%);  // Skubber knapperne tilbage med 50% af deres bredde for at centrere
       width: auto;  // Sørger for at knapperne ikke strækker sig over hele bredden
 
       /* Knap-styling - her genbruges mixins fra _buttons.scss */
       button {
-          @include buttons.phone-button($inactive-btn-color);
+          @include partial.phone-button(partial.$inactive-btn-color);
 
           .button-label {
-              @include buttons.button-label-style;
+              @include partial.button-label-style;
           }
       }
 
       /* Farver og ikoner for accept og decline knapper */
       .accept {
           .circle-bg {
-              background-color: $accept-btn-color;
+              background-color: partial.$accept-btn-color;
               img {
                   transform: rotate(225deg); //Roterer ikonet for accept 
               }
@@ -144,7 +133,7 @@ main {
 
       .decline {
           .circle-bg {
-              background-color: $decline-btn-color;
+              background-color: partial.$decline-btn-color;
           }
       }
   }
@@ -160,42 +149,42 @@ main {
 
   .btn-row {
       display: flex;
-      gap: $spacing * 4;
+      gap: partial.$spacing * 4;
       flex-wrap: wrap;
       justify-content: center;
       position: absolute;
-      bottom: $spacing*5;
+      bottom: partial.$spacing*5;
       left: 50%;  // Placerer venstre kant af knapperne i midten
       transform: translateX(-50%);  // Skubber knapperne tilbage med 50% af deres bredde for at centrere
       z-index: 1;
       width: 100%;
 
       &.top {
-        bottom: calc(#{$spacing * 5} + 180px); // Lige over bottom-rækken
+        bottom: calc(#{partial.$spacing * 5} + 180px); // Lige over bottom-rækken
       }
 
       button {
-          @include buttons.phone-button($inactive-btn-color); // Genbrug af mixin
+          @include partial.phone-button(partial.$inactive-btn-color); // Genbrug af mixin
 
           .button-label {
-              @include buttons.button-label-style; // Genbrug af label-styling
+              @include partial.button-label-style; // Genbrug af label-styling
           }
 
           /* Farver og tilstande for forskellige knapper */
           &.active .circle-bg {
-              background-color: $active-btn-color;
+              background-color: partial.$active-btn-color;
           }
 
           &.decline .circle-bg {
-              background-color: $decline-btn-color;
+              background-color: partial.$decline-btn-color;
           }
 
           &.sometimes-active .circle-bg {
-              background-color: $active-btn-color;
+              background-color: partial.$active-btn-color;
           }
 
           &.sometimes-active.inactive .circle-bg { 
-              background-color: $inactive-btn-color; // Tilføj inactive class når knappen er inactive
+              background-color: partial.$inactive-btn-color; // Tilføj inactive class når knappen er inactive
           }
 
           &.inactive {
@@ -210,7 +199,7 @@ main {
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch; // ændret fra center
-  padding: $spacing * 2;
+  padding: partial.$spacing * 2;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -306,10 +295,10 @@ main {
     }
   
     .main-box {
-      background-color: $box-color;
+      background-color: partial.$box-color;
       color: black;
-      border-radius: $border-radius;
-      padding: $spacing * 2;
+      border-radius: partial.$border-radius;
+      padding: partial.$spacing * 2;
       max-width: 850px;
       width: 100%;
       position: relative; // gør den til positioneringsparent
@@ -335,9 +324,9 @@ main {
         right: -150px;
         background-color: white;
         color: black;
-        border-radius: $border-radius;
+        border-radius: partial.$border-radius;
         max-width: 350px;
-        padding: $spacing * 1.5;
+        padding: partial.$spacing * 1.5;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
       }
     }
@@ -361,7 +350,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: $spacing;
+  margin-top: partial.$spacing;
   
 
   h1, h2, h3 {
@@ -371,13 +360,13 @@ main {
   }
 
   .card {
-      background-color: $box-color;
+      background-color: partial.$box-color;
       color: black;
-      border-radius: $border-radius;
+      border-radius: partial.$border-radius;
       width: 100svw; /* 100% indtil max-width nås */
       max-width: 850px;
-      padding: $spacing*2;
-      margin-top: $spacing;
+      padding: partial.$spacing*2;
+      margin-top: partial.$spacing;
     }
     
 }
