@@ -27,38 +27,56 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: partial.$spacing*3;
-
+  margin-top: partial.$spacing * 3;
 
   h1 {
-      font-size: 2.6em; 
-      font-weight: 500;
-      color: white;
+    font-size: 2.6em; 
+    font-weight: 500;
+    color: white;
+
+    // Mobilvisning – mindre overskrift
+    @include partial.respond-to(mobile) {
+      font-size: 2em;
+    }
   }
+
   .intro-box {
-      background-color: partial.$box-color;
-      color: black;
-      border-radius: partial.$border-radius;
-      max-width: 900px;
-      padding: partial.$spacing * 2;
-      font-size: 1.8em; 
+    background-color: partial.$box-color;
+    color: black;
+    border-radius: partial.$border-radius;
+    max-width: 900px;
+    padding: partial.$spacing * 2;
+    font-size: 1.8em; 
+
+    // Mobilvisning – mindre tekst
+    @include partial.respond-to(mobile) {
+      font-size: 1.2em;
+      
+    }
   }
 
   /* Start knap-styling */
   .start-button {
-      @include partial.phone-button(partial.$accept-btn-color); // Genbruger mixin for telefonknappen
-      position: absolute; // Bruges til at placere knapperne nederst på skærmen
-      bottom: partial.$spacing*5; // Juster afstanden fra bunden af skærmen
-      img {
-          transform: rotate(225deg); /* Roterer mobil-ikonet */
-      }
+    @include partial.phone-button(partial.$accept-btn-color); // Genbruger mixin for telefonknappen
+    position: absolute; // Bruges til at placere knapperne nederst på skærmen
+    bottom: partial.$spacing * 4; // Juster afstanden fra bunden af skærmen
+
+    img {
+      transform: rotate(225deg); /* Roterer mobil-ikonet */
+    }
+
+    // Mobil – Gør knappen nemmere at nå
+    @include partial.respond-to(mobile) {
+      bottom: partial.$spacing * 2;  
+    }
   }
 
   /* Label-styling for knap */
   .button-label {
-      @include partial.button-label-style;
+    @include partial.button-label-style;
   }
 }
+
 
 /* --------------- Call Header --------------- */
 .call-header {
@@ -69,16 +87,27 @@ main {
   .call-title {
       font-size: 1.2em;
       margin-bottom: partial.$spacing;
+      @include partial.respond-to(mobile) {
+        font-size: 1em;
+      }
   }
 
   .phone-number {
       font-size: 2.8em;
       margin: partial.$spacing;
+
+      @include partial.respond-to(mobile) {
+        font-size: 2em;
+      }
   }
 
   .sender {
       font-size: 1.2em;
       margin-top: partial.$spacing;
+
+      @include partial.respond-to(mobile) {
+        font-size: 1em;
+      }
   }
 }
 
@@ -98,7 +127,11 @@ main {
       padding: partial.$spacing * 2; // Tilføjer padding direkte på <p> og giver den $box-color
       margin-top: partial.$spacing*6;
       font-size: 1.8em;
-      text-align: center;  
+      text-align: center; 
+      
+      @include partial.respond-to(mobile) {
+        font-size: 1.2em;
+      }
   }
 
   .call-buttons {
@@ -273,6 +306,7 @@ main {
     }
   }
 }
+
 
 
 

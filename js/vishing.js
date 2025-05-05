@@ -39,7 +39,7 @@ let currentScene = 1;                        // Den aktuelle scene, som brugeren
 // Data, der beskriver hver scene, herunder video, knapper og næste scene
 const sceneData = { 
     1: {
-      video: 'videos/scene_1.mov',             // Den video, der afspilles i nuværende scene
+      video: 'videos/scene_1.mov',           // Den video, der afspilles i nuværende scene
       active: {                              // 'active' knap
         icon: 'icons/question.svg',          // Det ikon knappen har, i nuværende scene
         label: 'Overhovedet ikke.',          // Det label knappen har, i nuværende scene
