@@ -140,7 +140,7 @@ main {
     }
   }
 
-  // Række med opkaldsknapper (accept og decline)
+  // Opkaldsknapper (accept og decline)
   .call-buttons {
     display: flex;
     gap: partial.$spacing * 15; // Stor afstand mellem knapper
@@ -410,7 +410,7 @@ main {
         max-width: 80%;
 
         @include partial.respond-to(mobile) {
-          font-size: 1.4em;
+          font-size: 1.5em;
           max-width: 100%;
         }
       }
@@ -439,6 +439,7 @@ main {
         max-width: 65%;
         text-align: left;
         margin-top: partial.$spacing * 2;
+        font-size: 1em;
 
         @include partial.respond-to(mobile) {
           max-width: 100%;
@@ -512,14 +513,101 @@ main {
   }
 
   // Underfold - placeres nederst under hele boksen
-  .underfold {
-    margin-top: 120px; // Sørger for plads til tips-box der overlapper
-    text-align: center;
 
+  .underfold {
+    padding: 2rem;
+    margin: 0 auto;
+  
     h2 {
       font-size: 1.5em;
+      text-align: center;
+      margin-bottom: 2rem;
+
+      @include partial.respond-to(mobile) {
+        font-size: 1.2em;
+        text-align: left;
+        margin-bottom: 1rem;
+      }
+    }
+  
+    .step {
+      display: flex;
+      align-items: flex-start;
+      padding: partial.$spacing*2;
+  
+      .number {
+        font-size: 7em;
+        font-weight: bold;
+        margin-right: 1rem;
+        flex-shrink: 0;
+
+        @include partial.respond-to(mobile) {
+          font-size: 3em;
+          margin-bottom: 0.5rem;
+        }
+      }
+  
+      .content {
+        background: partial.$box-color;
+        padding: partial.$spacing * 3;
+        border-radius: partial.$border-radius;
+        color: black;
+        font-size: 1em;
+  
+        @include partial.respond-to(mobile) {
+          font-size: 0.95em;
+          padding: partial.$spacing * 2;
+          width: 100%;
+        }
+      }
+  
+      @include partial.respond-to(mobile) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  
+    .smack-icon {
+      text-align: center;
+      margin: 2rem 0;
+      pointer-events: none;
+      @include partial.phone-button(partial.$inactive-btn-color); // Grundknap-styling
+
+      .circle-bg {
+        background-color: partial.$decline-btn-color;
+      }
+
+      .button-label {
+        @include partial.button-label-style; 
+        font-size: 1em;
+
+        @include partial.respond-to(mobile) {
+          font-size: 0.95em;
+        }
+      }
+      
+      @include partial.respond-to(mobile) {
+        margin: 1.5rem 0;
+      }
+    }
+  
+    .download {
+      margin-top: 2rem;
+      font-size: 1em;
+
+  
+      a {
+        color: #fff;
+        text-decoration: underline;
+
+        &:hover {
+          color: partial.$accept-btn-color;
+          text-decoration: underline;
+        }
+      }
     }
   }
+  
 }
 
 
