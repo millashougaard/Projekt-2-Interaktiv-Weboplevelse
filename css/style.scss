@@ -1,25 +1,25 @@
 @use 'partial';
 
-/* General Styling */
-/* Grundlæggende styling for hele dokumentet */
+/* ---------------------- Global Styling ---------------------- */
+/* Grundlæggende opsætning af hele dokumentet */
 html, body {
-  height: 100%; // Sørger for at fylde hele skærmen
-  overflow: hidden; // Forhindrer scroll
+  height: 100%; // Fylder hele skærmen
+  overflow: hidden; // Fjerner scrollbars
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: partial.$font-family; // Bruger en global font fra variablerne
+  font-family: partial.$font-family; // Global font fra variabler
 }
 
-/* Main layout for hele scenariet */
+/* Overordnet layoutstruktur */
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100vh;
-  background-color: partial.$bg-color; // Baggrundsfarve for hele siden
-  padding: partial.$spacing; // Standard padding
+  min-height: 100vh; // Minimum fuld højde
+  background-color: partial.$bg-color; // Global baggrundsfarve
+  padding: partial.$spacing; // Standard spacing
 }
 
 /* --------------- Intro Page --------------- */
@@ -27,87 +27,86 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: partial.$spacing * 3;
+  margin-top: partial.$spacing * 3; // Giver luft over indholdet
 
   h1 {
-    font-size: 2.6em; 
+    font-size: 2.6em;
     font-weight: 500;
     color: white;
 
-    // Mobilvisning – mindre overskrift
+    // Tilpasning til mobil
     @include partial.respond-to(mobile) {
       font-size: 2em;
     }
   }
 
   .intro-box {
-    background-color: partial.$box-color;
+    background-color: partial.$box-color; // Boksen bag teksten
     color: black;
     border-radius: partial.$border-radius;
     max-width: 900px;
     padding: partial.$spacing * 2;
-    font-size: 1.8em; 
+    font-size: 1.8em;
 
-    // Mobilvisning – mindre tekst
+    // Mobilvenlig tekststørrelse
     @include partial.respond-to(mobile) {
       font-size: 1.2em;
-      
     }
   }
 
-  /* Start knap-styling */
+  // Knap til at starte scenariet
   .start-button {
-    @include partial.phone-button(partial.$accept-btn-color); // Genbruger mixin for telefonknappen
-    position: absolute; // Bruges til at placere knapperne nederst på skærmen
-    bottom: partial.$spacing * 4; // Juster afstanden fra bunden af skærmen
+    @include partial.phone-button(partial.$accept-btn-color); // Genbrug af telefonknap-mixin
+    position: absolute; // Placeres nederst på skærmen
+    bottom: partial.$spacing * 4;
 
     img {
-      transform: rotate(225deg); /* Roterer mobil-ikonet */
+      transform: rotate(225deg); // Roterer mobil ikon
     }
 
-    // Mobil – Gør knappen nemmere at nå
     @include partial.respond-to(mobile) {
-      bottom: partial.$spacing * 2;  
+      bottom: partial.$spacing * 2; // Mindre afstand til bund på mobil - gør knappen nemmere at nå
     }
   }
 
-  /* Label-styling for knap */
+  // Label under knappen
   .button-label {
-    @include partial.button-label-style;
+    @include partial.button-label-style; // Genbrug af global label-styling
   }
 }
 
-
 /* --------------- Call Header --------------- */
+/* Header med opkaldsinformation - bruges på tværs af sider */
 .call-header {
   text-align: center;
   color: white;
-  margin-top: partial.$spacing*1.5;
+  margin-top: partial.$spacing * 1.5;
 
   .call-title {
-      font-size: 1.2em;
-      margin-bottom: partial.$spacing;
-      @include partial.respond-to(mobile) {
-        font-size: 1em;
-      }
+    font-size: 1.2em;
+    margin-bottom: partial.$spacing;
+
+    @include partial.respond-to(mobile) {
+      font-size: 1em;
+    }
   }
 
   .phone-number {
-      font-size: 2.8em;
-      margin: partial.$spacing;
+    font-size: 2.8em;
+    margin: partial.$spacing;
 
-      @include partial.respond-to(mobile) {
-        font-size: 2em;
-      }
+    @include partial.respond-to(mobile) {
+      font-size: 2em;
+    }
   }
 
   .sender {
-      font-size: 1.2em;
-      margin-top: partial.$spacing;
+    font-size: 1.2em;
+    margin-top: partial.$spacing;
 
-      @include partial.respond-to(mobile) {
-        font-size: 1em;
-      }
+    @include partial.respond-to(mobile) {
+      font-size: 1em;
+    }
   }
 }
 
@@ -119,59 +118,62 @@ main {
   align-items: center;
   justify-content: flex-start;
 
+  // Boksen der vises, når man afviser opkaldet
   .decline-message {
-      background-color: partial.$box-color;  
-      color: black;
-      border-radius: partial.$border-radius;
-      max-width: 850px;
-      padding: partial.$spacing * 2; // Tilføjer padding direkte på <p> og giver den $box-color
-      margin-top: partial.$spacing*6;
-      font-size: 1.8em;
-      text-align: center; 
-      
-      @include partial.respond-to(mobile) {
-        font-size: 1.2em;
-      }
+    background-color: partial.$box-color;
+    color: black;
+    border-radius: partial.$border-radius;
+    max-width: 850px;
+    padding: partial.$spacing * 2; // Tilføjer padding direkte på <p> og giver den $box-color
+    margin-top: partial.$spacing * 6;
+    font-size: 1.8em;
+    text-align: center;
+
+    @include partial.respond-to(mobile) {
+      font-size: 1.2em;
+    }
   }
 
+  // Række med opkaldsknapper (accept og decline)
   .call-buttons {
-      display: flex;
-      gap: partial.$spacing * 15;
-      flex-wrap: wrap;
-      justify-content: center;
-      position: absolute;
-      bottom: partial.$spacing*5;
-      left: 50%;  // Placerer venstre kant af knapperne i midten
-      transform: translateX(-50%);  // Skubber knapperne tilbage med 50% af deres bredde for at centrere
-      width: auto;  // Sørger for at knapperne ikke strækker sig over hele bredden
+    display: flex;
+    gap: partial.$spacing * 15; // Stor afstand mellem knapper
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    bottom: partial.$spacing * 5;
+    left: 50%; // Placerer venstre kant af knapperne i midten
+    transform: translateX(-50%); // Skubber knapperne tilbage med 50% af deres bredde for at centrere
+    width: auto; // Sørger for at knapperne ikke strækker sig over hele bredden
 
-      /* Knap-styling - her genbruges mixins fra _buttons.scss */
-      button {
-          @include partial.phone-button(partial.$inactive-btn-color);
+    // Knap-styling - her genbruges mixins fra _buttons.scss
+    button {
+      @include partial.phone-button(partial.$inactive-btn-color); // Grundknap-styling
 
-          .button-label {
-              @include partial.button-label-style;
-          }
+      .button-label {
+        @include partial.button-label-style; // Label-styling
       }
+    }
 
-      /* Farver og ikoner for accept og decline knapper */
-      .accept {
-          .circle-bg {
-              background-color: partial.$accept-btn-color;
-              img {
-                  transform: rotate(225deg); //Roterer ikonet for accept 
-              }
-          }
-      }
+    // Accept-knap med grøn baggrund og drejet ikon
+    .accept {
+      .circle-bg {
+        background-color: partial.$accept-btn-color;
 
-      .decline {
-          .circle-bg {
-              background-color: partial.$decline-btn-color;
-          }
+        img {
+          transform: rotate(225deg); 
+        }
       }
+    }
+
+    // Afvis-knap med rød baggrund
+    .decline {
+      .circle-bg {
+        background-color: partial.$decline-btn-color;
+      }
+    }
   }
 }
-
 
 /* --------------- Telefoninterface --------------- */
 .phone {
@@ -179,7 +181,7 @@ main {
   flex-direction: column;
   height: 100vh; // Fuld højde for telefonlayoutet
 
-  /* ----------- Knap-rækker (fælles for alle scener) ----------- */
+  /* Knap-rækker (fælles for alle scener) */
   .btn-row {
     display: flex;
     gap: partial.$spacing * 4;
@@ -227,7 +229,7 @@ main {
     }
   }
 
-  /* ----------- Indholdsområde: video, tekst, input og billede ----------- */
+  /* Indholdsområde: video, tekst, input og billede */
   .content-container {
     display: flex;
     flex-direction: row;
@@ -239,7 +241,7 @@ main {
     width: 100%;
     height: 100%;
 
-    // ----------- Videoelement centreres absolut og fylder maks 60% af bredde -----------
+    /* Videoelement centreres absolut og fylder maks 60% af bredde */
     video {
       max-width: 60%;
       height: auto;
@@ -260,7 +262,7 @@ main {
       }
     }
 
-    /* ----------- Tekst og input-felt (venstre side) ----------- */
+    /* Tekst og input-felt (venstre side) */
     .text-side {
       flex: 1;
       max-width: 60%;
@@ -330,7 +332,7 @@ main {
       }
     }
 
-    /* ----------- Billedvisning (højre side) ----------- */
+    /* Billedvisning (højre side) */
     .image-side {
       flex: 1;
       max-width: 40%; // Resten af pladsen
@@ -365,76 +367,103 @@ main {
   }
 }
 
-
-
-/* Ending Styling */
+/* --------------- Ending Page --------------- */
 .ending {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 1.3em;
+  color: white;
+  margin-top: partial.$spacing * 4; 
+
+  .overfold {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    font-size: 1.3em;
-    color: white;
-  
-    .overfold {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      padding: 2rem;
+    position: relative;
+    padding: 2rem;
+  }
+
+  .main-box {
+    background-color: partial.$box-color;
+    color: black;
+    border-radius: partial.$border-radius;
+    padding: partial.$spacing * 2;
+    max-width: 850px;
+    width: 100%;
+    position: relative; // gør den til positioneringsparent
+
+    // Tekst i hovedboksen
+    .main-text {
+      font-size: 1.8em;
+      font-weight: 600;
+      max-width: 80%;
     }
+
+    a {
+      display: inline-block; 
+      max-width: 70%; 
+      width: 100%; 
+      text-align: left; 
+      margin: 0 auto; 
+      font-size: 1.2em; 
+      text-decoration: none;
   
-    .main-box {
-      background-color: partial.$box-color;
-      color: black;
-      border-radius: partial.$border-radius;
-      padding: partial.$spacing * 2;
-      max-width: 850px;
-      width: 100%;
-      position: relative; // gør den til positioneringsparent
-  
-      .main-text {
-        font-size: 1.8em;
-        font-weight: 600;
-        max-width: 80%;
-      }
-  
-      .icon-box {
-        position: absolute;
-        top: -40px;
-        right: -40px;
-        img {
-          width: 200px; // Tilføjet størrelsen på ikonet her
-        }
-      }
-  
-      .tips-box {
-        position: absolute;
-        bottom: -150px;
-        right: -150px;
-        background-color: white;
-        color: black;
-        border-radius: partial.$border-radius;
-        max-width: 350px;
-        padding: partial.$spacing * 1.5;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      &:hover {
+        color: blue; 
+        text-decoration: underline; 
       }
     }
 
-    .small-heading {
-        max-width: 60%;
-    }
-  
-    .underfold {
-      margin-top: 120px; // plads til tips-box der overlapper
-      text-align: center;
-  
-      h2 {
-        font-size: 1.5em;
+    // Icon boks: Placerer ikonet øverst i højre hjørne af main-box
+    .icon-box {
+      position: absolute;
+      top: -120px; 
+      right: -100px; 
+      img {
+        width: 350px; 
       }
     }
+
+    // Tips boks: Placerer den i højre side, lidt inde i main-box
+    .tips-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; 
+      align-items: center;     
+      text-align: left;      
+      position: absolute;
+      bottom: -120px; 
+      right: -180px; 
+      background-color: white;
+      color: black;
+      border-radius: partial.$border-radius;
+      max-width: 450px;
+      padding: partial.$spacing;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
   }
+
+  // Small heading: Placerer denne under main-box
+  .small-heading {
+    max-width: 100%;
+    text-align: left; 
+    margin-top: partial.$spacing * 2; 
+    align-self: flex-start;
+  }
+
+  .underfold {
+    margin-top: 120px; 
+    text-align: center;
+
+    h2 {
+      font-size: 1.5em;
+    }
+  }
+}
+
 
 /*-----Info Page Styling-----*/
 .info-page {

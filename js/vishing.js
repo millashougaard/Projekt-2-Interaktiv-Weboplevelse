@@ -355,9 +355,8 @@ function loadEnding(endingNumber) {
       <li>Først skabes en frygt for formuen</li><br>
       <li>Derefter tilbydes en løsning, som kan redde opsparingen</li>
     `;
-  }
+  } 
 }
-
 
 /* --------------- FUNKTIONER: Inputfelt i scene 6 --------------- */
 /**
