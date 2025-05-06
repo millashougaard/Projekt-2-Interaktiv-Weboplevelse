@@ -33,6 +33,12 @@ const endingPage = document.querySelector('.ending');
 let hasDeclinedOnce = false;                 // Holder styr på om brugeren allerede har afvist én gang
 let currentScene = 1;                        // Den aktuelle scene, som brugeren er på i samtalen
 
+// Funktion til at gemme valg
+function saveChoice(sceneNumber, choiceText) {
+  const storedChoices = JSON.parse(localStorage.getItem('userChoices')) || [];
+  storedChoices.push({ scene: sceneNumber, choice: choiceText });
+  localStorage.setItem('userChoices', JSON.stringify(storedChoices));
+}
 
 /* --------------- SCENE-DATA --------------- */
 
@@ -207,8 +213,10 @@ function declineFromPhone() {
 
 // Håndter tryk på 'Active' knap 
 function handleActiveBtn() {
-  const next = sceneData[currentScene]?.active?.nextScene;
+  const scene = sceneData[currentScene];
+  const next = scene?.active?.nextScene;
   if (next) {
+    saveChoice(currentScene, scene.active.label);
     currentScene = next;                           // Opdater scene
     loadScene(currentScene);                       // Indlæs næste scene
   }
@@ -216,8 +224,10 @@ function handleActiveBtn() {
 
 // Håndter tryk på 'Sometimes active' knap 
 function handleSometimesActiveBtn() {
-  const next = sceneData[currentScene]?.sometimesActive?.nextScene;
+  const scene = sceneData[currentScene];
+  const next = scene?.sometimesActive?.nextScene;
   if (next) {
+    saveChoice(currentScene, scene.sometimesActive.label); // GEM VALGET
     currentScene = next;
     loadScene(currentScene);
   }
@@ -312,6 +322,19 @@ function loadEnding(endingNumber) {
   const learnMoreLink = document.getElementById("learnMoreLink");
   const smallHeadingTitle = document.getElementById("smallHeadingTitle");
   const smallHeadingList = document.getElementById("smallHeadingList");
+
+  const choiceList = document.getElementById('userChoiceList');
+  if (choiceList) {
+    const storedChoices = JSON.parse(localStorage.getItem('userChoices')) || [];
+    // Vis kun valgene, hvis afslutningen ikke er 2
+    if (endingNumber !== 2) {
+      choiceList.innerHTML = '<h3>Dine valg:</h3><ul>' +
+        storedChoices.map(choice => `<li>Scene ${choice.scene}: ${choice.choice}</li>`).join('') +
+      '</ul>';
+    } else {
+      choiceList.style.display = 'none'; // Skjul choiceList i afslutning 2
+    }
+  }
   
   // Afslutning 1 - Se HTML id="decline-message" (linje #)
 
@@ -357,6 +380,7 @@ function loadEnding(endingNumber) {
     `;
   } 
 }
+
 
 /* --------------- FUNKTIONER: Inputfelt i scene 6 --------------- */
 /**
@@ -418,6 +442,8 @@ document.getElementById("playAgainLink").addEventListener("click", function () {
   
     // Ryd inputfeltet hvis det blev brugt
     userInput.value = '';
+
+    localStorage.removeItem('userChoices'); // Ryd valgene
   });
 
   
