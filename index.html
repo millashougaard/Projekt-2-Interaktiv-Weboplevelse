@@ -146,45 +146,47 @@
     </div>
   </section>
 
-  <!-- AFSLUTNING -->
-  <section class="ending" style="display: none;">
-    <div class="overfold">
+ <!-- AFSLUTNING -->
+<section class="ending" style="display: none;">
+  <div class="overfold">
 
-      <div id="userChoiceList" class="user-choices"></div>
+    <section class="main-box">
+      <h1 id="mainText" class="main-text"></h1>
+      <br>
+      <a id="playAgainLink" href="">Spil igen</a>
+      <br><br>
+      <a id="learnMoreLink" href="info.html">Læs mere</a>
+      <br><br>
 
-
-      <section class="main-box">
-        <h1 id="mainText" class="main-text"></h1><br><br>
-        <a id="playAgainLink" href="">Spil igen</a><br><br>
-        <a id="learnMoreLink" href="info.html">Læs mere</a><br><br>
-      
-        <!-- Flyttet herind -->
-        <div class="icon-box">
-          <img id="alarmIcon" src="icons/alarm-red.svg" alt="Alarm ikon" class="alarm-icon">
-        </div>
-      
-        <div class="tips-box">
-          <p><strong>3 gode råd til at undgå at blive snydt</strong> </p>
-          <ul>
-            <li>Banken ringer aldrig uopfordret.</li><br>
-            <li>Det er svindel, hvis nogen beder dig overføre penge.</li><br>
-            <li>Hold hovedet koldt og tænk dig om før hurtige beslutninger.</li><br>
-          </ul>
-        </div>
-      </section>
-    
       <section class="small-heading">
-          <p id="smallHeadingTitle"></p>
-          <ol id="smallHeadingList"></ol>
-        </section>
+        <p id="smallHeadingTitle"></p>
+        <ol id="smallHeadingList"></ol>
       </section>
-    </div>
 
-    <section  class="underfold" style="display: none;"> <!-- Den her skal lige fixes så den vises på ending -->
-      <h2>Sådan kan du hjælpe ældre i din omgangskreds med at blive mere modstandsdygtige over for svindel</h2>
-      <p>Her kommer din faste tekst.</p>
+      <div class="icon-box">
+        <img id="alarmIcon" src="icons/alarm-red.svg" alt="Alarm ikon" class="alarm-icon">
+      </div>
+
+      <div class="tips-box">
+        <p><strong>3 gode råd til at undgå at blive snydt</strong></p>
+        <ul>
+          <li>Banken ringer aldrig uopfordret.</li><br>
+          <li>Det er svindel, hvis nogen beder dig overføre penge.</li><br>
+          <li>Hold hovedet koldt og tænk dig om før hurtige beslutninger.</li><br>
+        </ul>
+      </div>
     </section>
+
+    <div id="userChoiceList" class="user-choices"></div>
+
+  </div>
+
+  <section class="underfold" style="display: none;">
+    <h2>Sådan kan du hjælpe ældre i din omgangskreds med at blive mere modstandsdygtige over for svindel</h2>
+    <p>Her kommer din faste tekst.</p>
   </section>
+</section>
+
 
 </main>
 </body>

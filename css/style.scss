@@ -4,7 +4,6 @@
 /* Grundlæggende opsætning af hele dokumentet */
 html, body {
   height: 100%; // Fylder hele skærmen
-  overflow: hidden; // Fjerner scrollbars
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -22,12 +21,19 @@ main {
   padding: partial.$spacing; // Standard spacing
 }
 
+.intro-page,
+.call-page-start,
+.phone {
+  overflow: hidden;
+  height: 100vh;
+}
+
 /* --------------- Intro Page --------------- */
 .intro-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: partial.$spacing * 3; // Giver luft over indholdet
+  margin-top: partial.$spacing * 4; // Giver luft over indholdet
 
   h1 {
     font-size: 2.6em;
@@ -45,8 +51,8 @@ main {
     color: black;
     border-radius: partial.$border-radius;
     max-width: 900px;
-    padding: partial.$spacing * 2;
-    font-size: 1.8em;
+    padding: partial.$spacing * 3;
+    font-size: 1.5em;
 
     // Mobilvenlig tekststørrelse
     @include partial.respond-to(mobile) {
@@ -58,7 +64,7 @@ main {
   .start-button {
     @include partial.phone-button(partial.$accept-btn-color); // Genbrug af telefonknap-mixin
     position: absolute; // Placeres nederst på skærmen
-    bottom: partial.$spacing * 4;
+    bottom: partial.$spacing * 5;
 
     img {
       transform: rotate(225deg); // Roterer mobil ikon
@@ -275,7 +281,7 @@ main {
 
       // Paragraf-tekst vises som instruktiv besked
       p {
-        font-size: 1.8em;
+        font-size: 1.5em;
         line-height: 1.5;
         color: white;
         width: 100%;
@@ -341,9 +347,11 @@ main {
       align-items: flex-start;
 
       img {
-        max-height: calc(100vh - 5px); // Sikrer billedet ikke fylder for meget
+        max-height: calc(100vh - 80px); // Sikrer billedet ikke fylder for meget
         object-fit: contain; // Bevarer billedets proportioner
         transform: translateY(-220px); // Løfter billedet opad
+        z-index: 2; // Over knap
+        pointer-events: none; // Knapper kan klikkes
 
         @include partial.respond-to(mobile) {
           max-width: 90%;
@@ -376,7 +384,7 @@ main {
   min-height: 100vh;
   font-size: 1.3em;
   color: white;
-  margin-top: partial.$spacing * 4; 
+  margin-top: partial.$spacing * 3;
 
   .overfold {
     display: flex;
@@ -384,78 +392,99 @@ main {
     align-items: center;
     position: relative;
     padding: 2rem;
-  }
 
-  .main-box {
-    background-color: partial.$box-color;
-    color: black;
-    border-radius: partial.$border-radius;
-    padding: partial.$spacing * 2;
-    max-width: 850px;
-    width: 100%;
-    position: relative; // gør den til positioneringsparent
-
-    // Tekst i hovedboksen
-    .main-text {
-      font-size: 1.8em;
-      font-weight: 600;
-      max-width: 80%;
-    }
-
-    a {
-      display: inline-block; 
-      max-width: 70%; 
-      width: 100%; 
-      text-align: left; 
-      margin: 0 auto; 
-      font-size: 1.2em; 
-      text-decoration: none;
-  
-      &:hover {
-        color: blue; 
-        text-decoration: underline; 
-      }
-    }
-
-    // Icon boks: Placerer ikonet øverst i højre hjørne af main-box
-    .icon-box {
-      position: absolute;
-      top: -120px; 
-      right: -100px; 
-      img {
-        width: 350px; 
-      }
-    }
-
-    // Tips boks: Placerer den i højre side, lidt inde i main-box
-    .tips-box {
-      display: flex;
-      flex-direction: column;
-      justify-content: center; 
-      align-items: center;     
-      text-align: left;      
-      position: absolute;
-      bottom: -120px; 
-      right: -180px; 
-      background-color: white;
+    .main-box {
+      background-color: partial.$box-color;
       color: black;
       border-radius: partial.$border-radius;
-      max-width: 450px;
-      padding: partial.$spacing;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      padding: partial.$spacing * 2;
+      min-height: 600px; // Så tips-boks ikke flytter sig afhængigt at small-heading
+      max-width: 850px;
+      width: 100%;
+      position: relative; // gør den til positioneringsparent
+
+      // Tekst i hovedboksen
+      .main-text {
+        font-size: 1.8em;
+        font-weight: 600;
+        max-width: 80%;
+      }
+
+      a {
+        display: inline-block;
+        max-width: 60%;
+        width: 100%;
+        text-align: left;
+        margin: 0 auto;
+        font-size: 1em;
+        text-decoration: none;
+
+        &:hover {
+          color: blue;
+          text-decoration: underline;
+        }
+      }
+
+      // Bruger feedback
+      .small-heading {
+        max-width: 65%;
+        text-align: left;
+        margin-top: partial.$spacing * 2;
+      }
+
+      // Icon boks: Placerer ikonet øverst i højre hjørne af main-box
+      .icon-box {
+        position: absolute;
+        top: -120px;
+        right: -120px;
+
+        img {
+          width: 400px;
+        }
+      }
+
+      // Tips boks: Placerer den i højre side, lidt inde i main-box
+      .tips-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+        position: absolute;
+        bottom: 50px;
+        right: -180px;
+        background-color: white;
+        color: black;
+        border-radius: partial.$border-radius;
+        max-width: 450px;
+        padding: partial.$spacing;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        font-size: 1em;
+      }
+    }
+
+    // Brugerens valg under main-box
+    .user-choices {
+      font-size: 1em;
+      width: 100%;
+      padding-left: partial.$spacing * 2;
+      margin: 0 auto;
+      text-align: left;
+
+      ul {
+        list-style: disc;
+        padding-left: 1.2em;
+      }
+
+      li {
+        margin-bottom: 0.5em;
+      }
     }
   }
 
-  // Small heading: Placerer denne under main-box
-  .small-heading {
-    max-width: 100%;
-    text-align: left; 
-    margin-top: partial.$spacing * 2; 
-    align-self: flex-start;
-  }
-
+  // Underfold - placeres nederst under hele boksen
   .underfold {
-    margin-top: 120px; 
+    margin-top: 120px; // Sørger for plads til tips-box der overlapper
     text-align: center;
 
     h2 {
@@ -463,6 +492,7 @@ main {
     }
   }
 }
+
 
 
 /*-----Info Page Styling-----*/

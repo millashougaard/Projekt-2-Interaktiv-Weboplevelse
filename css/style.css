@@ -4,7 +4,6 @@
 /* Grundlæggende opsætning af hele dokumentet */
 html, body {
   height: 100%;
-  overflow: hidden;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -22,12 +21,19 @@ main {
   padding: 20px;
 }
 
+.intro-page,
+.call-page-start,
+.phone {
+  overflow: hidden;
+  height: 100vh;
+}
+
 /* --------------- Intro Page --------------- */
 .intro-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 80px;
 }
 .intro-page h1 {
   font-size: 2.6em;
@@ -44,8 +50,8 @@ main {
   color: black;
   border-radius: 50px;
   max-width: 900px;
-  padding: 40px;
-  font-size: 1.8em;
+  padding: 60px;
+  font-size: 1.5em;
 }
 @media (max-width: 600px) {
   .intro-page .intro-box {
@@ -62,7 +68,7 @@ main {
   justify-content: center;
   cursor: pointer;
   position: absolute;
-  bottom: 80px;
+  bottom: 100px;
 }
 .intro-page .start-button .circle-bg {
   background-color: #A3DC80;
@@ -370,7 +376,7 @@ main {
   gap: 1.5rem;
 }
 .phone .content-container .text-side p {
-  font-size: 1.8em;
+  font-size: 1.5em;
   line-height: 1.5;
   color: white;
   width: 100%;
@@ -434,10 +440,12 @@ main {
   align-items: flex-start;
 }
 .phone .content-container .image-side img {
-  max-height: calc(100vh - 5px);
+  max-height: calc(100vh - 80px);
   -o-object-fit: contain;
      object-fit: contain;
   transform: translateY(-220px);
+  z-index: 2;
+  pointer-events: none;
 }
 @media (max-width: 600px) {
   .phone .content-container .image-side img {
@@ -469,7 +477,7 @@ main {
   min-height: 100vh;
   font-size: 1.3em;
   color: white;
-  margin-top: 80px;
+  margin-top: 60px;
 }
 .ending .overfold {
   display: flex;
@@ -478,49 +486,55 @@ main {
   position: relative;
   padding: 2rem;
 }
-.ending .main-box {
+.ending .overfold .main-box {
   background-color: #D9D9D9;
   color: black;
   border-radius: 50px;
   padding: 40px;
+  min-height: 600px;
   max-width: 850px;
   width: 100%;
   position: relative;
 }
-.ending .main-box .main-text {
+.ending .overfold .main-box .main-text {
   font-size: 1.8em;
   font-weight: 600;
   max-width: 80%;
 }
-.ending .main-box a {
+.ending .overfold .main-box a {
   display: inline-block;
-  max-width: 70%;
+  max-width: 60%;
   width: 100%;
   text-align: left;
   margin: 0 auto;
-  font-size: 1.2em;
+  font-size: 1em;
   text-decoration: none;
 }
-.ending .main-box a:hover {
+.ending .overfold .main-box a:hover {
   color: blue;
   text-decoration: underline;
 }
-.ending .main-box .icon-box {
+.ending .overfold .main-box .small-heading {
+  max-width: 65%;
+  text-align: left;
+  margin-top: 40px;
+}
+.ending .overfold .main-box .icon-box {
   position: absolute;
   top: -120px;
-  right: -100px;
+  right: -120px;
 }
-.ending .main-box .icon-box img {
-  width: 350px;
+.ending .overfold .main-box .icon-box img {
+  width: 400px;
 }
-.ending .main-box .tips-box {
+.ending .overfold .main-box .tips-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: left;
   position: absolute;
-  bottom: -120px;
+  bottom: 50px;
   right: -180px;
   background-color: white;
   color: black;
@@ -528,12 +542,21 @@ main {
   max-width: 450px;
   padding: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  font-size: 1em;
 }
-.ending .small-heading {
-  max-width: 100%;
+.ending .overfold .user-choices {
+  font-size: 1em;
+  width: 100%;
+  padding-left: 40px;
+  margin: 0 auto;
   text-align: left;
-  margin-top: 40px;
-  align-self: flex-start;
+}
+.ending .overfold .user-choices ul {
+  list-style: disc;
+  padding-left: 1.2em;
+}
+.ending .overfold .user-choices li {
+  margin-bottom: 0.5em;
 }
 .ending .underfold {
   margin-top: 120px;
