@@ -386,6 +386,10 @@ main {
   color: white;
   margin-top: partial.$spacing * 3;
 
+  @include partial.respond-to(mobile) {
+    font-size: 1em;
+  }
+
   .overfold {
     display: flex;
     flex-direction: column;
@@ -403,11 +407,20 @@ main {
       width: 100%;
       position: relative; // gør den til positioneringsparent
 
+      @include partial.respond-to(mobile) {
+        min-height: auto;
+      }
+
       // Tekst i hovedboksen
       .main-text {
         font-size: 1.8em;
         font-weight: 600;
         max-width: 80%;
+
+        @include partial.respond-to(mobile) {
+          font-size: 1.4em;
+          max-width: 100%;
+        }
       }
 
       a {
@@ -423,6 +436,11 @@ main {
           color: blue;
           text-decoration: underline;
         }
+
+        @include partial.respond-to(mobile) {
+          max-width: 100%;
+          font-size: 0.95em;
+        }
       }
 
       // Bruger feedback
@@ -430,6 +448,10 @@ main {
         max-width: 65%;
         text-align: left;
         margin-top: partial.$spacing * 2;
+
+        @include partial.respond-to(mobile) {
+          max-width: 100%;
+        }
       }
 
       // Icon boks: Placerer ikonet øverst i højre hjørne af main-box
@@ -440,6 +462,14 @@ main {
 
         img {
           width: 400px;
+
+          @include partial.respond-to(mobile) {
+            width: 200px;
+          }
+        }
+
+        @include partial.respond-to(mobile) {
+          display: none;
         }
       }
 
@@ -460,6 +490,10 @@ main {
         padding: partial.$spacing;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         font-size: 1em;
+
+        @include partial.respond-to(mobile) {
+          display: none;
+        }
       }
     }
 
@@ -478,6 +512,10 @@ main {
 
       li {
         margin-bottom: 0.5em;
+      }
+
+      @include partial.respond-to(mobile) {
+        margin: 0;
       }
     }
   }
