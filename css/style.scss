@@ -152,6 +152,11 @@ main {
     transform: translateX(-50%); // Skubber knapperne tilbage med 50% af deres bredde for at centrere
     width: auto; // Sørger for at knapperne ikke strækker sig over hele bredden
 
+    @include partial.respond-to(mobile) {
+      flex-direction: row;  // Ensretter knapperne horisontalt på små skærme
+      gap: partial.$spacing * 5.5; 
+    }
+
     // Knap-styling - her genbruges mixins fra _buttons.scss
     button {
       @include partial.phone-button(partial.$inactive-btn-color); // Grundknap-styling
@@ -260,11 +265,6 @@ main {
 
       @include partial.respond-to(mobile) {
         max-width: 100%;
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-        margin-top: 1rem;
       }
     }
 
@@ -314,8 +314,7 @@ main {
           color: white;
 
           @include partial.respond-to(mobile) {
-            margin-top: 2rem;
-            text-align: center;
+            margin-top: 1rem;
           }
         }
 
@@ -346,23 +345,16 @@ main {
       justify-content: center;
       align-items: flex-start;
 
+      @include partial.respond-to(mobile) {
+        display: none;
+      }
+
       img {
         max-height: calc(100vh - 80px); // Sikrer billedet ikke fylder for meget
         object-fit: contain; // Bevarer billedets proportioner
         transform: translateY(-220px); // Løfter billedet opad
         z-index: 2; // Over knap
         pointer-events: none; // Knapper kan klikkes
-
-        @include partial.respond-to(mobile) {
-          max-width: 90%;
-          max-height: 40vh;
-          transform: none;
-        }
-      }
-
-      @include partial.respond-to(mobile) {
-        max-width: 100%;
-        justify-content: center;
       }
     }
 
@@ -439,7 +431,6 @@ main {
 
         @include partial.respond-to(mobile) {
           max-width: 100%;
-          font-size: 0.95em;
         }
       }
 

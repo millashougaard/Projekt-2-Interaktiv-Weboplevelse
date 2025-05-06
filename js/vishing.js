@@ -262,9 +262,21 @@ function loadScene(sceneNumber) {
     userInputContainer.style.display = 'none';      // Skjul inputfeltet i alle andre scener
   }
 
-  // Opdater video
+  // Videoelementet fjernes helt fra DOM'en i scene 4 og 6, så det ikke eksisterer. (Ellers blokerer video p og input på små skærme, så de ikke kan centreres i toppen)
+if (sceneNumber === 4 || sceneNumber === 6) {
+  if (videoElement.parentNode) {
+    videoElement.parentNode.removeChild(videoElement);  // Fjern videoelementet helt fra DOM
+  }
+} else {
+  // Hvis vi er i en anden scene, sørg for at videoen er i DOM'en
+  if (!document.body.contains(videoElement)) {
+    document.querySelector('.content-container').appendChild(videoElement); // Tilføj videoen tilbage til DOM'en, hvis den er blevet fjernet
+  }
+
+  // Opdater og afspil video
   videoElement.src = scene.video;
   videoElement.play();
+}
 
   // 'Active' knap - Hent billede og tekst-elementerne
   const activeImg = activeBtn.querySelector('img');

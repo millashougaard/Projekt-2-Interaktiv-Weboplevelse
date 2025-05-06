@@ -186,6 +186,12 @@ main {
   transform: translateX(-50%);
   width: auto;
 }
+@media (max-width: 600px) {
+  .call-page .call-buttons {
+    flex-direction: row;
+    gap: 110px;
+  }
+}
 .call-page .call-buttons button {
   background-color: transparent;
   border: none;
@@ -358,11 +364,6 @@ main {
 @media (max-width: 600px) {
   .phone .content-container video {
     max-width: 100%;
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    margin-top: 1rem;
   }
 }
 .phone .content-container .text-side {
@@ -410,8 +411,7 @@ main {
 }
 @media (max-width: 600px) {
   .phone .content-container .text-side #userInputContainer label {
-    margin-top: 2rem;
-    text-align: center;
+    margin-top: 1rem;
   }
 }
 .phone .content-container .text-side #userInputContainer input {
@@ -439,6 +439,11 @@ main {
   justify-content: center;
   align-items: flex-start;
 }
+@media (max-width: 600px) {
+  .phone .content-container .image-side {
+    display: none;
+  }
+}
 .phone .content-container .image-side img {
   max-height: calc(100vh - 80px);
   -o-object-fit: contain;
@@ -446,19 +451,6 @@ main {
   transform: translateY(-220px);
   z-index: 2;
   pointer-events: none;
-}
-@media (max-width: 600px) {
-  .phone .content-container .image-side img {
-    max-width: 90%;
-    max-height: 40vh;
-    transform: none;
-  }
-}
-@media (max-width: 600px) {
-  .phone .content-container .image-side {
-    max-width: 100%;
-    justify-content: center;
-  }
 }
 @media (max-width: 600px) {
   .phone .content-container {
@@ -533,7 +525,6 @@ main {
 @media (max-width: 600px) {
   .ending .overfold .main-box a {
     max-width: 100%;
-    font-size: 0.95em;
   }
 }
 .ending .overfold .main-box .small-heading {
