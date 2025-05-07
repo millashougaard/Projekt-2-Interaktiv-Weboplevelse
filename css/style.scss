@@ -49,6 +49,10 @@ main {
   align-items: center;
   margin-top: partial.$spacing * 4; // Giver luft over indholdet
 
+  @include partial.respond-to(mobile) {
+    margin: 0;
+  }
+
   h1 {
     font-size: 2.6em;
     font-weight: 500;
@@ -58,6 +62,7 @@ main {
     // Tilpasning til mobil
     @include partial.respond-to(mobile) {
       font-size: 1.8em;
+      margin-bottom: partial.$spacing;
     }
   }
 
@@ -72,7 +77,7 @@ main {
     // Mobilvenlig tekststørrelse
     @include partial.respond-to(mobile) {
       font-size: 1em;
-      padding: partial.$spacing*2;
+      padding: partial.$spacing;
     }
   }
 
@@ -691,32 +696,112 @@ main {
   
 }
 
-
-
-
 /*-----Info Page Styling-----*/
 .info-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: partial.$spacing;
-  
+  padding: 2rem;
+  margin: 0 auto;
 
-  h1, h2, h3 {
+  @include partial.respond-to(mobile) {
+    padding: 1em;
+  }
+
+  h1 {
+    font-size: 2em;
     font-weight: 700;
-    width: 100%; // så overskrifterne stadig tager fuld bredde
     text-align: left;
+    margin-bottom: 2rem;
+    color: white;
+
+    @include partial.respond-to(mobile) {
+      font-size: 1.6em;
+      text-align: left;
+    }
+  }
+
+  h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    text-align: left;
+    color: white;
+
+    @include partial.respond-to(mobile) {
+      font-size: 1.2em;
+    }
+  }
+
+  h3 {
+    font-size: 1.3em;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: white;
   }
 
   .card {
-      background-color: partial.$box-color;
-      color: black;
-      border-radius: partial.$border-radius;
-      width: 100svw; /* 100% indtil max-width nås */
-      max-width: 850px;
-      padding: partial.$spacing*2;
-      margin-top: partial.$spacing;
+    background: partial.$box-color;
+    padding: partial.$spacing * 3;
+    border-radius: partial.$border-radius;
+    color: black;
+    font-size: 1.2em;
+    margin-bottom: 2rem; // Tilføjer afstand mellem kortene
+    max-width: 1100px;
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; // Holder kortene centreret
+
+    // Forskyd kortene skiftevis
+
+    &:nth-child(odd) {
+      transform: translateX(-100px); // Skubbe ulige kort lidt til højre
     }
-    
+
+    &:nth-child(even) {
+      transform: translateX(60px); // Skubbe lige kort lidt til venstre
+    }
+
+    @include partial.respond-to(mobile) {
+      padding: partial.$spacing * 2;
+      font-size: 0.95em;
+    }
+  }
+
+  .decline-btn-ending {
+    margin-top: 1em;
+    pointer-events: none;
+    @include partial.phone-button(partial.$decline-btn-color); // Grundknap-styling
+
+    @include partial.respond-to(mobile) {
+      margin-top: 1.5em;
+    }
+  }
+
+  .button-label {
+    @include partial.button-label-style; // Genbrug af global label-styling
+  }
+
+  .note {
+    padding: 1rem;
+    margin-top: 1.5rem;
+    font-weight: 500;
+    font-size: 1.2em;
+    color: white;
+  }
+
+  .download {
+    margin-top: 2rem;
+    font-size: 1.2em;
+    color: white;
+
+    a {
+      color: white;
+      text-decoration: underline;
+
+      &:hover {
+        color: partial.$accept-btn-color;
+        text-decoration: underline;
+      }
+    }
+  }
 }
-  
