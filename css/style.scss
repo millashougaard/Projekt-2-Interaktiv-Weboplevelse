@@ -665,7 +665,7 @@ main {
     .decline-btn-ending {
       margin-top: 1em;
       pointer-events: none;
-      @include partial.phone-button(partial.$decline-btn-color); // Grundknap-styling
+      @include partial.phone-button(partial.$decline-btn-color); 
 
       @include partial.respond-to(mobile) {
         margin-top: 1.5em;
@@ -673,7 +673,7 @@ main {
     }
 
     .button-label {
-      @include partial.button-label-style; // Genbrug af global label-styling
+      @include partial.button-label-style;
     }
 
   
@@ -744,7 +744,7 @@ main {
     border-radius: partial.$border-radius;
     color: black;
     font-size: 1.2em;
-    margin-bottom: 2rem; // Tilføjer afstand mellem kortene
+    margin-bottom: 2rem; 
     max-width: 1100px;
     width: 100%;
     display: block;
@@ -770,7 +770,7 @@ main {
   .decline-btn-ending {
     margin-top: 1em;
     pointer-events: none;
-    @include partial.phone-button(partial.$decline-btn-color); // Grundknap-styling
+    @include partial.phone-button(partial.$decline-btn-color); 
 
     @include partial.respond-to(mobile) {
       margin-top: 1.5em;
@@ -778,7 +778,7 @@ main {
   }
 
   .button-label {
-    @include partial.button-label-style; // Genbrug af global label-styling
+    @include partial.button-label-style; 
   }
 
   .note {
