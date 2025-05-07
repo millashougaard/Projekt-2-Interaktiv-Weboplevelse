@@ -2,11 +2,21 @@
 
 /* ---------------------- Global Styling ---------------------- */
 /* Grundlæggende opsætning af hele dokumentet */
-html, body {
-  height: 100%; // Fylder hele skærmen
+html {
+  box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box; // ikke 'inherit' medmindre du har sat det på html
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+}
+
+html, body {
+  min-height: 100dvh; // Garanterer fuld højde på tværs af browsere
+  margin: 0;
+  padding: 0;
   font-family: partial.$font-family; // Global font fra variabler
 }
 
@@ -16,17 +26,21 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100vh; // Minimum fuld højde
+  min-height: 100dvh; // Brug 100dvh for mere ens adfærd på tværs af browsere
   background-color: partial.$bg-color; // Global baggrundsfarve
   padding: partial.$spacing; // Standard spacing
 }
 
+/* Fuldsidesektioner */
 .intro-page,
 .call-page-start,
 .phone {
   overflow: hidden;
-  height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
+
 
 /* --------------- Intro Page --------------- */
 .intro-page {
@@ -39,10 +53,11 @@ main {
     font-size: 2.6em;
     font-weight: 500;
     color: white;
+    margin-bottom: partial.$spacing*3;
 
     // Tilpasning til mobil
     @include partial.respond-to(mobile) {
-      font-size: 2em;
+      font-size: 1.8em;
     }
   }
 
@@ -56,7 +71,8 @@ main {
 
     // Mobilvenlig tekststørrelse
     @include partial.respond-to(mobile) {
-      font-size: 1.2em;
+      font-size: 1em;
+      padding: partial.$spacing*2;
     }
   }
 
@@ -147,14 +163,14 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     position: absolute;
-    bottom: partial.$spacing * 5;
+    bottom: partial.$spacing * 4;
     left: 50%; // Placerer venstre kant af knapperne i midten
     transform: translateX(-50%); // Skubber knapperne tilbage med 50% af deres bredde for at centrere
     width: auto; // Sørger for at knapperne ikke strækker sig over hele bredden
 
     @include partial.respond-to(mobile) {
       flex-direction: row;  // Ensretter knapperne horisontalt på små skærme
-      gap: partial.$spacing * 5.5; 
+      gap: partial.$spacing * 3.5; 
     }
 
     // Knap-styling - her genbruges mixins fra _buttons.scss
@@ -199,15 +215,19 @@ main {
     flex-wrap: wrap; // Tillader knapper at rykke ned på flere linjer
     justify-content: center;
     position: absolute;
-    bottom: partial.$spacing * 5;
+    bottom: partial.$spacing * 3;
     left: 50%; // Placerer venstre kant af knapperne i midten
     transform: translateX(-50%); // Skubber knapperne tilbage med 50% af deres bredde for at centrere
     z-index: 1; // Sørger for at knapperne ligger øverst
     width: 100%;
 
     &.top {
-      bottom: calc(#{partial.$spacing * 5} + 180px); // Position lidt over bund-knapperne
+      bottom: calc(#{partial.$spacing * 3} + 180px); // Position lidt over bund-knapperne
       pointer-events: none; // Gør det muligt at interagere med bagvedliggende elementer (input)
+
+      @include partial.respond-to(mobile) {
+        bottom: calc(#{partial.$spacing} + 180px);
+      }
     }
 
     button {
@@ -247,14 +267,13 @@ main {
     flex-wrap: wrap; 
     justify-content: space-between;
     align-items: stretch;
-    padding: partial.$spacing * 2;
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
+    min-height: 100dvh;
 
     /* Videoelement centreres absolut og fylder maks 60% af bredde */
     video {
-      max-width: 60%;
+      max-width: 50%;
       height: auto;
       display: block;
       margin: auto;
@@ -262,6 +281,7 @@ main {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -80%); // Visuelt center over midten
+      z-index: 0;
 
       @include partial.respond-to(mobile) {
         max-width: 100%;
@@ -289,7 +309,7 @@ main {
         margin: 0;
 
         @include partial.respond-to(mobile) {
-          font-size: 1.2em;
+          font-size: 1em;
           text-align: left;
         }
       }
@@ -325,7 +345,7 @@ main {
           border: none;
 
           @include partial.respond-to(mobile) {
-            width: 90%;
+            width: 100%;
             font-size: 1em;
           }
         }
@@ -352,7 +372,7 @@ main {
       img {
         max-height: calc(100vh - 80px); // Sikrer billedet ikke fylder for meget
         object-fit: contain; // Bevarer billedets proportioner
-        transform: translateY(-220px); // Løfter billedet opad
+        transform: translateY(-180px); // Løfter billedet opad
         z-index: 2; // Over knap
         pointer-events: none; // Knapper kan klikkes
       }
@@ -380,6 +400,7 @@ main {
 
   @include partial.respond-to(mobile) {
     font-size: 1em;
+    margin-top: auto;
   }
 
   .overfold {
@@ -389,18 +410,49 @@ main {
     position: relative;
     padding: 2rem;
 
+    @include partial.respond-to(mobile) {
+      padding: 0;
+    }
+
     .main-box {
       background-color: partial.$box-color;
       color: black;
       border-radius: partial.$border-radius;
-      padding: partial.$spacing * 2;
-      min-height: 600px; // Så tips-boks ikke flytter sig afhængigt at small-heading
+      padding: partial.$spacing * 3;
+      min-height: 650px; // Så tips-boks ikke flytter sig afhængigt af small-heading
       max-width: 850px;
       width: 100%;
       position: relative; // gør den til positioneringsparent
 
       @include partial.respond-to(mobile) {
         min-height: auto;
+      }
+
+      // Genskaber standardafstande og listeformatering inde i boksen
+      p {
+        margin-bottom: 1em;
+      }
+
+      ol, ul {
+        padding-left: 1.5em;
+        margin-bottom: 1em;
+      }
+
+      ol {
+        list-style: decimal;
+      }
+
+      ul {
+        list-style: disc;
+      }
+
+      li {
+        margin-bottom: 0.5em;
+      }
+
+      h1, h2 {
+        margin-bottom: 0.6em;
+        font-weight: bold;
       }
 
       // Tekst i hovedboksen
@@ -410,7 +462,7 @@ main {
         max-width: 80%;
 
         @include partial.respond-to(mobile) {
-          font-size: 1.5em;
+          font-size: 1.2em;
           max-width: 100%;
         }
       }
@@ -441,8 +493,23 @@ main {
         margin-top: partial.$spacing * 2;
         font-size: 1em;
 
+        // Genskaber p og ol/ul styles kun her også
+        p {
+          margin-bottom: 1em; 
+        }
+
+        ol {
+          padding-left: 1.5em; 
+          list-style: decimal;
+          margin-bottom: 1em;
+        }
+
+        li {
+          margin-bottom: 0.5em;
+        }
+
         @include partial.respond-to(mobile) {
-          max-width: 100%;
+          display: none;
         }
       }
 
@@ -453,7 +520,7 @@ main {
         right: -120px;
 
         img {
-          width: 400px;
+          width: 350px;
 
           @include partial.respond-to(mobile) {
             width: 200px;
@@ -479,9 +546,24 @@ main {
         color: black;
         border-radius: partial.$border-radius;
         max-width: 450px;
-        padding: partial.$spacing;
+        padding: partial.$spacing*2;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         font-size: 1em;
+
+        // Genskaber afstand og bullets i tipslisten
+        p {
+          margin-bottom: 1em;
+        }
+
+        ul {
+          list-style: disc;
+          padding-left: 1.5em;
+          margin-bottom: 1em;
+        }
+
+        li {
+          margin-bottom: 0.5em;
+        }
 
         @include partial.respond-to(mobile) {
           display: none;
@@ -512,11 +594,16 @@ main {
     }
   }
 
+
   // Underfold - placeres nederst under hele boksen
 
   .underfold {
     padding: 2rem;
     margin: 0 auto;
+
+    @include partial.respond-to(mobile) {
+      padding: 1em;
+    }
   
     h2 {
       font-size: 1.5em;
@@ -526,7 +613,6 @@ main {
       @include partial.respond-to(mobile) {
         font-size: 1.2em;
         text-align: left;
-        margin-bottom: 1rem;
       }
     }
   
@@ -534,6 +620,10 @@ main {
       display: flex;
       align-items: flex-start;
       padding: partial.$spacing*2;
+
+      @include partial.respond-to(mobile) {
+        padding: 0;
+      }
   
       .number {
         font-size: 7em;
@@ -567,29 +657,20 @@ main {
       }
     }
   
-    .smack-icon {
-      text-align: center;
-      margin: 2rem 0;
+    .decline-btn-ending {
+      margin-top: 1em;
       pointer-events: none;
-      @include partial.phone-button(partial.$inactive-btn-color); // Grundknap-styling
+      @include partial.phone-button(partial.$decline-btn-color); // Grundknap-styling
 
-      .circle-bg {
-        background-color: partial.$decline-btn-color;
-      }
-
-      .button-label {
-        @include partial.button-label-style; 
-        font-size: 1em;
-
-        @include partial.respond-to(mobile) {
-          font-size: 0.95em;
-        }
-      }
-      
       @include partial.respond-to(mobile) {
-        margin: 1.5rem 0;
+        margin-top: 1.5em;
       }
     }
+
+    .button-label {
+      @include partial.button-label-style; // Genbrug af global label-styling
+    }
+
   
     .download {
       margin-top: 2rem;
@@ -609,6 +690,7 @@ main {
   }
   
 }
+
 
 
 

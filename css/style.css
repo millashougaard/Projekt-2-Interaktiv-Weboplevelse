@@ -2,11 +2,21 @@
 /*Variables*/
 /* ---------------------- Global Styling ---------------------- */
 /* Grundlæggende opsætning af hele dokumentet */
-html, body {
-  height: 100%;
+html {
+  box-sizing: border-box;
+}
+html *,
+html *::before,
+html *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
   font-family: "Inter", sans-serif;
 }
 
@@ -16,16 +26,19 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100vh;
+  min-height: 100dvh;
   background-color: #32302D;
   padding: 20px;
 }
 
+/* Fuldsidesektioner */
 .intro-page,
 .call-page-start,
 .phone {
   overflow: hidden;
-  height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* --------------- Intro Page --------------- */
@@ -39,10 +52,11 @@ main {
   font-size: 2.6em;
   font-weight: 500;
   color: white;
+  margin-bottom: 60px;
 }
 @media (max-width: 600px) {
   .intro-page h1 {
-    font-size: 2em;
+    font-size: 1.8em;
   }
 }
 .intro-page .intro-box {
@@ -55,7 +69,8 @@ main {
 }
 @media (max-width: 600px) {
   .intro-page .intro-box {
-    font-size: 1.2em;
+    font-size: 1em;
+    padding: 40px;
   }
 }
 .intro-page .start-button {
@@ -73,25 +88,25 @@ main {
 .intro-page .start-button .circle-bg {
   background-color: #A3DC80;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .intro-page .start-button .circle-bg img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   pointer-events: none;
 }
 @media (max-width: 600px) {
   .intro-page .start-button .circle-bg {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
   }
   .intro-page .start-button .circle-bg img {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
   }
 }
 .intro-page .start-button img {
@@ -103,9 +118,10 @@ main {
   }
 }
 .intro-page .button-label {
+  display: inline-block;
   color: white;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
   max-width: 120px;
   height: 2.4em;
   line-height: 1;
@@ -113,7 +129,8 @@ main {
 }
 @media (max-width: 600px) {
   .intro-page .button-label {
-    font-size: 1.5em;
+    font-size: 1em;
+    max-width: 60px;
   }
 }
 
@@ -181,7 +198,7 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   position: absolute;
-  bottom: 100px;
+  bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
   width: auto;
@@ -189,7 +206,7 @@ main {
 @media (max-width: 600px) {
   .call-page .call-buttons {
     flex-direction: row;
-    gap: 110px;
+    gap: 70px;
   }
 }
 .call-page .call-buttons button {
@@ -205,31 +222,32 @@ main {
 .call-page .call-buttons button .circle-bg {
   background-color: #575654;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .call-page .call-buttons button .circle-bg img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   pointer-events: none;
 }
 @media (max-width: 600px) {
   .call-page .call-buttons button .circle-bg {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
   }
   .call-page .call-buttons button .circle-bg img {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
   }
 }
 .call-page .call-buttons button .button-label {
+  display: inline-block;
   color: white;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
   max-width: 120px;
   height: 2.4em;
   line-height: 1;
@@ -237,7 +255,8 @@ main {
 }
 @media (max-width: 600px) {
   .call-page .call-buttons button .button-label {
-    font-size: 1.5em;
+    font-size: 1em;
+    max-width: 60px;
   }
 }
 .call-page .call-buttons .accept .circle-bg {
@@ -264,15 +283,20 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   position: absolute;
-  bottom: 100px;
+  bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
   width: 100%;
 }
 .phone .btn-row.top {
-  bottom: calc(100px + 180px);
+  bottom: calc(60px + 180px);
   pointer-events: none;
+}
+@media (max-width: 600px) {
+  .phone .btn-row.top {
+    bottom: calc(20px + 180px);
+  }
 }
 .phone .btn-row button {
   background-color: transparent;
@@ -287,31 +311,32 @@ main {
 .phone .btn-row button .circle-bg {
   background-color: #575654;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .phone .btn-row button .circle-bg img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   pointer-events: none;
 }
 @media (max-width: 600px) {
   .phone .btn-row button .circle-bg {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
   }
   .phone .btn-row button .circle-bg img {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
   }
 }
 .phone .btn-row button .button-label {
+  display: inline-block;
   color: white;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
   max-width: 120px;
   height: 2.4em;
   line-height: 1;
@@ -319,7 +344,8 @@ main {
 }
 @media (max-width: 600px) {
   .phone .btn-row button .button-label {
-    font-size: 1.5em;
+    font-size: 1em;
+    max-width: 60px;
   }
 }
 .phone .btn-row button.active .circle-bg {
@@ -343,16 +369,15 @@ main {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: stretch;
-  padding: 40px;
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
+  min-height: 100dvh;
   /* Videoelement centreres absolut og fylder maks 60% af bredde */
   /* Tekst og input-felt (venstre side) */
   /* Billedvisning (højre side) */
 }
 .phone .content-container video {
-  max-width: 60%;
+  max-width: 50%;
   height: auto;
   display: block;
   margin: auto;
@@ -360,6 +385,7 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -80%);
+  z-index: 0;
 }
 @media (max-width: 600px) {
   .phone .content-container video {
@@ -386,7 +412,7 @@ main {
 }
 @media (max-width: 600px) {
   .phone .content-container .text-side p {
-    font-size: 1.2em;
+    font-size: 1em;
     text-align: left;
   }
 }
@@ -422,7 +448,7 @@ main {
 }
 @media (max-width: 600px) {
   .phone .content-container .text-side #userInputContainer input {
-    width: 90%;
+    width: 100%;
     font-size: 1em;
   }
 }
@@ -448,7 +474,7 @@ main {
   max-height: calc(100vh - 80px);
   -o-object-fit: contain;
      object-fit: contain;
-  transform: translateY(-220px);
+  transform: translateY(-180px);
   z-index: 2;
   pointer-events: none;
 }
@@ -474,6 +500,7 @@ main {
 @media (max-width: 600px) {
   .ending {
     font-size: 1em;
+    margin-top: auto;
   }
 }
 .ending .overfold {
@@ -483,12 +510,17 @@ main {
   position: relative;
   padding: 2rem;
 }
+@media (max-width: 600px) {
+  .ending .overfold {
+    padding: 0;
+  }
+}
 .ending .overfold .main-box {
   background-color: #D9D9D9;
   color: black;
   border-radius: 50px;
-  padding: 40px;
-  min-height: 600px;
+  padding: 60px;
+  min-height: 650px;
   max-width: 850px;
   width: 100%;
   position: relative;
@@ -498,6 +530,26 @@ main {
     min-height: auto;
   }
 }
+.ending .overfold .main-box p {
+  margin-bottom: 1em;
+}
+.ending .overfold .main-box ol, .ending .overfold .main-box ul {
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+}
+.ending .overfold .main-box ol {
+  list-style: decimal;
+}
+.ending .overfold .main-box ul {
+  list-style: disc;
+}
+.ending .overfold .main-box li {
+  margin-bottom: 0.5em;
+}
+.ending .overfold .main-box h1, .ending .overfold .main-box h2 {
+  margin-bottom: 0.6em;
+  font-weight: bold;
+}
 .ending .overfold .main-box .main-text {
   font-size: 1.8em;
   font-weight: 600;
@@ -505,7 +557,7 @@ main {
 }
 @media (max-width: 600px) {
   .ending .overfold .main-box .main-text {
-    font-size: 1.5em;
+    font-size: 1.2em;
     max-width: 100%;
   }
 }
@@ -533,9 +585,20 @@ main {
   margin-top: 40px;
   font-size: 1em;
 }
+.ending .overfold .main-box .small-heading p {
+  margin-bottom: 1em;
+}
+.ending .overfold .main-box .small-heading ol {
+  padding-left: 1.5em;
+  list-style: decimal;
+  margin-bottom: 1em;
+}
+.ending .overfold .main-box .small-heading li {
+  margin-bottom: 0.5em;
+}
 @media (max-width: 600px) {
   .ending .overfold .main-box .small-heading {
-    max-width: 100%;
+    display: none;
   }
 }
 .ending .overfold .main-box .icon-box {
@@ -544,7 +607,7 @@ main {
   right: -120px;
 }
 .ending .overfold .main-box .icon-box img {
-  width: 400px;
+  width: 350px;
 }
 @media (max-width: 600px) {
   .ending .overfold .main-box .icon-box img {
@@ -569,9 +632,20 @@ main {
   color: black;
   border-radius: 50px;
   max-width: 450px;
-  padding: 20px;
+  padding: 40px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   font-size: 1em;
+}
+.ending .overfold .main-box .tips-box p {
+  margin-bottom: 1em;
+}
+.ending .overfold .main-box .tips-box ul {
+  list-style: disc;
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+}
+.ending .overfold .main-box .tips-box li {
+  margin-bottom: 0.5em;
 }
 @media (max-width: 600px) {
   .ending .overfold .main-box .tips-box {
@@ -601,6 +675,11 @@ main {
   padding: 2rem;
   margin: 0 auto;
 }
+@media (max-width: 600px) {
+  .ending .underfold {
+    padding: 1em;
+  }
+}
 .ending .underfold h2 {
   font-size: 1.5em;
   text-align: center;
@@ -610,13 +689,17 @@ main {
   .ending .underfold h2 {
     font-size: 1.2em;
     text-align: left;
-    margin-bottom: 1rem;
   }
 }
 .ending .underfold .step {
   display: flex;
   align-items: flex-start;
   padding: 40px;
+}
+@media (max-width: 600px) {
+  .ending .underfold .step {
+    padding: 0;
+  }
 }
 .ending .underfold .step .number {
   font-size: 7em;
@@ -650,9 +733,8 @@ main {
     align-items: flex-start;
   }
 }
-.ending .underfold .smack-icon {
-  text-align: center;
-  margin: 2rem 0;
+.ending .underfold .decline-btn-ending {
+  margin-top: 1em;
   pointer-events: none;
   background-color: transparent;
   border: none;
@@ -663,56 +745,49 @@ main {
   justify-content: center;
   cursor: pointer;
 }
-.ending .underfold .smack-icon .circle-bg {
-  background-color: #575654;
+.ending .underfold .decline-btn-ending .circle-bg {
+  background-color: #FF453A;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.ending .underfold .smack-icon .circle-bg img {
-  width: 50px;
-  height: 50px;
+.ending .underfold .decline-btn-ending .circle-bg img {
+  width: 40px;
+  height: 40px;
   pointer-events: none;
 }
 @media (max-width: 600px) {
-  .ending .underfold .smack-icon .circle-bg {
-    width: 80px;
-    height: 80px;
+  .ending .underfold .decline-btn-ending .circle-bg {
+    width: 60px;
+    height: 60px;
   }
-  .ending .underfold .smack-icon .circle-bg img {
-    width: 32px;
-    height: 32px;
+  .ending .underfold .decline-btn-ending .circle-bg img {
+    width: 24px;
+    height: 24px;
   }
 }
-.ending .underfold .smack-icon .circle-bg {
-  background-color: #FF453A;
+@media (max-width: 600px) {
+  .ending .underfold .decline-btn-ending {
+    margin-top: 1.5em;
+  }
 }
-.ending .underfold .smack-icon .button-label {
+.ending .underfold .button-label {
+  display: inline-block;
   color: white;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
   max-width: 120px;
   height: 2.4em;
   line-height: 1;
   margin-top: 1em;
-  font-size: 1em;
 }
 @media (max-width: 600px) {
-  .ending .underfold .smack-icon .button-label {
-    font-size: 1.5em;
-  }
-}
-@media (max-width: 600px) {
-  .ending .underfold .smack-icon .button-label {
-    font-size: 0.95em;
-  }
-}
-@media (max-width: 600px) {
-  .ending .underfold .smack-icon {
-    margin: 1.5rem 0;
+  .ending .underfold .button-label {
+    font-size: 1em;
+    max-width: 60px;
   }
 }
 .ending .underfold .download {
