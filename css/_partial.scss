@@ -69,7 +69,7 @@ $breakpoint-tablet: 900px;
 
   // Mobil – mindre tekst
   @include respond-to(mobile) {
-    font-size: 1em;
+    font-size: 1.2em;
     max-width: 60px;
   }
 }

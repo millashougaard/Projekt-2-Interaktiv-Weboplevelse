@@ -50,7 +50,7 @@ main {
 }
 @media (max-width: 600px) {
   .intro-page {
-    margin: 0;
+    margin-top: 40px;
   }
 }
 .intro-page h1 {
@@ -76,7 +76,7 @@ main {
 @media (max-width: 600px) {
   .intro-page .intro-box {
     font-size: 1em;
-    padding: 20px;
+    padding: 40px;
   }
 }
 .intro-page .start-button {
@@ -135,7 +135,7 @@ main {
 }
 @media (max-width: 600px) {
   .intro-page .button-label {
-    font-size: 1em;
+    font-size: 1.2em;
     max-width: 60px;
   }
 }
@@ -196,6 +196,7 @@ main {
 @media (max-width: 600px) {
   .call-page .decline-message {
     font-size: 1.2em;
+    margin-top: 20px;
   }
 }
 .call-page .call-buttons {
@@ -261,7 +262,7 @@ main {
 }
 @media (max-width: 600px) {
   .call-page .call-buttons button .button-label {
-    font-size: 1em;
+    font-size: 1.2em;
     max-width: 60px;
   }
 }
@@ -350,7 +351,7 @@ main {
 }
 @media (max-width: 600px) {
   .phone .btn-row button .button-label {
-    font-size: 1em;
+    font-size: 1.2em;
     max-width: 60px;
   }
 }
@@ -408,6 +409,12 @@ main {
   padding-left: 3rem;
   gap: 1.5rem;
 }
+@media (max-width: 600px) {
+  .phone .content-container .text-side {
+    padding: 0;
+    margin: 0;
+  }
+}
 .phone .content-container .text-side p {
   font-size: 1.5em;
   line-height: 1.5;
@@ -418,7 +425,7 @@ main {
 }
 @media (max-width: 600px) {
   .phone .content-container .text-side p {
-    font-size: 1em;
+    font-size: 0.95em;
     text-align: left;
   }
 }
@@ -443,7 +450,7 @@ main {
 }
 @media (max-width: 600px) {
   .phone .content-container .text-side #userInputContainer label {
-    margin-top: 1rem;
+    z-index: 1;
   }
 }
 .phone .content-container .text-side #userInputContainer input {
@@ -455,7 +462,7 @@ main {
 @media (max-width: 600px) {
   .phone .content-container .text-side #userInputContainer input {
     width: 100%;
-    font-size: 1em;
+    font-size: 0.95em;
   }
 }
 @media (max-width: 600px) {
@@ -488,7 +495,6 @@ main {
   .phone .content-container {
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
   }
 }
 
@@ -534,6 +540,7 @@ main {
 @media (max-width: 600px) {
   .ending .overfold .main-box {
     min-height: auto;
+    padding: 40px;
   }
 }
 .ending .overfold .main-box p {
@@ -583,6 +590,7 @@ main {
 @media (max-width: 600px) {
   .ending .overfold .main-box a {
     max-width: 100%;
+    font-size: 0.95em;
   }
 }
 .ending .overfold .main-box .small-heading {
@@ -674,7 +682,8 @@ main {
 }
 @media (max-width: 600px) {
   .ending .overfold .user-choices {
-    margin: 0;
+    font-size: 0.95em;
+    margin-top: 20px;
   }
 }
 .ending .underfold {
@@ -792,7 +801,7 @@ main {
 }
 @media (max-width: 600px) {
   .ending .underfold .button-label {
-    font-size: 1em;
+    font-size: 1.2em;
     max-width: 60px;
   }
 }
@@ -851,6 +860,11 @@ main {
   margin-bottom: 1rem;
   color: white;
 }
+@media (max-width: 600px) {
+  .info-page h3 {
+    font-size: 1em;
+  }
+}
 .info-page .card {
   background: #D9D9D9;
   padding: 60px;
@@ -864,11 +878,26 @@ main {
   margin-left: auto;
   margin-right: auto;
 }
+@media (max-width: 600px) {
+  .info-page .card {
+    width: 100%;
+  }
+}
 .info-page .card:nth-child(odd) {
   transform: translateX(-100px);
 }
+@media (max-width: 600px) {
+  .info-page .card:nth-child(odd) {
+    transform: none;
+  }
+}
 .info-page .card:nth-child(even) {
   transform: translateX(60px);
+}
+@media (max-width: 600px) {
+  .info-page .card:nth-child(even) {
+    transform: none;
+  }
 }
 @media (max-width: 600px) {
   .info-page .card {
@@ -929,7 +958,7 @@ main {
 }
 @media (max-width: 600px) {
   .info-page .button-label {
-    font-size: 1em;
+    font-size: 1.2em;
     max-width: 60px;
   }
 }
@@ -940,10 +969,20 @@ main {
   font-size: 1.2em;
   color: white;
 }
+@media (max-width: 600px) {
+  .info-page .note {
+    font-size: 0.95em;
+  }
+}
 .info-page .download {
   margin-top: 2rem;
   font-size: 1.2em;
   color: white;
+}
+@media (max-width: 600px) {
+  .info-page .download {
+    font-size: 0.95em;
+  }
 }
 .info-page .download a {
   color: white;

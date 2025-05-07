@@ -50,7 +50,7 @@ main {
   margin-top: partial.$spacing * 4; // Giver luft over indholdet
 
   @include partial.respond-to(mobile) {
-    margin: 0;
+    margin-top: partial.$spacing*2;
   }
 
   h1 {
@@ -77,7 +77,7 @@ main {
     // Mobilvenlig tekststørrelse
     @include partial.respond-to(mobile) {
       font-size: 1em;
-      padding: partial.$spacing;
+      padding: partial.$spacing*2;
     }
   }
 
@@ -158,6 +158,7 @@ main {
 
     @include partial.respond-to(mobile) {
       font-size: 1.2em;
+      margin-top: partial.$spacing;
     }
   }
 
@@ -175,7 +176,7 @@ main {
 
     @include partial.respond-to(mobile) {
       flex-direction: row;  // Ensretter knapperne horisontalt på små skærme
-      gap: partial.$spacing * 3.5; 
+      gap: partial.$spacing*3.5;
     }
 
     // Knap-styling - her genbruges mixins fra _buttons.scss
@@ -304,6 +305,11 @@ main {
       padding-left: 3rem;
       gap: 1.5rem;
 
+      @include partial.respond-to(mobile) {
+        padding: 0;
+        margin: 0;
+      }
+
       // Paragraf-tekst vises som instruktiv besked
       p {
         font-size: 1.5em;
@@ -314,7 +320,7 @@ main {
         margin: 0;
 
         @include partial.respond-to(mobile) {
-          font-size: 1em;
+          font-size: 0.95em;
           text-align: left;
         }
       }
@@ -339,7 +345,7 @@ main {
           color: white;
 
           @include partial.respond-to(mobile) {
-            margin-top: 1rem;
+            z-index: 1;
           }
         }
 
@@ -351,7 +357,7 @@ main {
 
           @include partial.respond-to(mobile) {
             width: 100%;
-            font-size: 1em;
+            font-size: 0.95em;
           }
         }
 
@@ -387,7 +393,6 @@ main {
     @include partial.respond-to(mobile) {
       flex-direction: column;
       align-items: center;
-      padding: 1rem;
     }
   }
 }
@@ -431,6 +436,7 @@ main {
 
       @include partial.respond-to(mobile) {
         min-height: auto;
+        padding: partial.$spacing*2;
       }
 
       // Genskaber standardafstande og listeformatering inde i boksen
@@ -488,6 +494,7 @@ main {
 
         @include partial.respond-to(mobile) {
           max-width: 100%;
+          font-size: 0.95em;
         }
       }
 
@@ -594,7 +601,8 @@ main {
       }
 
       @include partial.respond-to(mobile) {
-        margin: 0;
+        font-size: 0.95em;
+        margin-top: partial.$spacing;
       }
     }
   }
@@ -736,6 +744,10 @@ main {
     font-weight: 500;
     margin-bottom: 1rem;
     color: white;
+
+    @include partial.respond-to(mobile) {
+      font-size: 1em;
+    }
   }
 
   .card {
@@ -751,14 +763,26 @@ main {
     margin-left: auto;
     margin-right: auto; // Holder kortene centreret
 
+    @include partial.respond-to(mobile) {
+      width: 100%;
+    }
+
     // Forskyd kortene skiftevis
 
     &:nth-child(odd) {
       transform: translateX(-100px); // Skubbe ulige kort lidt til højre
+      
+      @include partial.respond-to(mobile) {
+        transform: none;
+      }
     }
 
     &:nth-child(even) {
       transform: translateX(60px); // Skubbe lige kort lidt til venstre
+      
+      @include partial.respond-to(mobile) {
+        transform: none;
+      }
     }
 
     @include partial.respond-to(mobile) {
@@ -787,12 +811,20 @@ main {
     font-weight: 500;
     font-size: 1.2em;
     color: white;
+
+    @include partial.respond-to(mobile) {
+      font-size: 0.95em;
+    }
   }
 
   .download {
     margin-top: 2rem;
     font-size: 1.2em;
     color: white;
+
+    @include partial.respond-to(mobile) {
+      font-size: 0.95em;
+    }
 
     a {
       color: white;
