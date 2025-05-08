@@ -57,7 +57,7 @@ const sceneData = {
         nextScene: 2,
         active: false                        // Indikerer, at knappen er inaktiv
       },
-      declineEnding: 2                       // Hvis brugeren klikker på 'decline' knap -> Load ending (2)
+      declineEnding: 2                       // Hvis brugeren klikker på 'decline' knap -> load ending (2)
     },
     2: {
       video: 'videos/scene_2.mov',
@@ -69,7 +69,7 @@ const sceneData = {
       sometimesActive: {
         icon: 'icons/question.svg',
         label: 'Hvad skal det betyde?',
-        nextScene: '2.1',                    // Hvis brugeren klikker på knappen -> Load under-scene 
+        nextScene: '2.1',                    // Hvis brugeren klikker på knappen -> load under-scene 
         active: true                         // Indikerer, at knappen er aktiv i denne scene
       },
       declineEnding: 2
@@ -182,13 +182,13 @@ function startCallPage() {
 // Håndter afvisning af opkald
 function declineCall() {
   if (!hasDeclinedOnce) {                          
-    declineMessage.style.display = 'block';        // Hvis 'decline' på første opkaldsside -> Vis besked (afslutning 1)
+    declineMessage.style.display = 'block';        // Hvis 'decline' på første opkaldsside -> vis besked (afslutning 1)
     callSound.pause();                             // Stop ringelyd
     hasDeclinedOnce = true;                        // Opdater status til afvist én gang
   } else {
     callPageStart.style.display = 'none';          
-    endingPage.style.display = 'block';            // Anden afvisning -> Vis afslutning
-    loadEnding(2);                                 // Indlæs afslutning (afslutning 2) -> Se loadEnding funktion (linje #)
+    endingPage.style.display = 'block';            // Anden afvisning -> vis afslutning
+    loadEnding(2);                                 // Indlæs afslutning (afslutning 2) -> se loadEnding funktion (l. 324)
   }
 }
 
@@ -208,26 +208,26 @@ function declineFromPhone() {
   phoneInterface.style.display = 'none';
   endingPage.style.display = 'block';
   const scene = sceneData[currentScene];
-  loadEnding(scene?.declineEnding || 2);           // Indlæs afslutning for den aktuelle scene
+  loadEnding(scene?.declineEnding || 2);                   // Indlæs afslutning for den aktuelle scene
 }
 
-// Håndter tryk på 'Active' knap 
+// Håndter tryk på 'active' knap 
 function handleActiveBtn() {
   const scene = sceneData[currentScene];
   const next = scene?.active?.nextScene;
   if (next) {
     saveChoice(currentScene, scene.active.label);
-    currentScene = next;                           // Opdater scene
-    loadScene(currentScene);                       // Indlæs næste scene
+    currentScene = next;                                   // Opdater scene
+    loadScene(currentScene);                               // Indlæs næste scene
   }
 }
 
-// Håndter tryk på 'Sometimes active' knap 
+// Håndter tryk på 'sometimes active' knap 
 function handleSometimesActiveBtn() {
   const scene = sceneData[currentScene];
   const next = scene?.sometimesActive?.nextScene;
   if (next) {
-    saveChoice(currentScene, scene.sometimesActive.label); // GEM VALGET
+    saveChoice(currentScene, scene.sometimesActive.label); // Gem valget
     currentScene = next;
     loadScene(currentScene);
   }
@@ -238,7 +238,7 @@ function handleSometimesActiveBtn() {
 
 function loadScene(sceneNumber) {
   const scene = sceneData[sceneNumber];
-  if (!scene) return; // Stop hvis scenen ikke findes
+  if (!scene) return;                                      // Stop hvis scenen ikke findes
 
   // Skjul alle relevante elementer først
   const elementsToHide = ['netbank-info', 'sms', 'nordeaMobile'];
@@ -257,15 +257,15 @@ function loadScene(sceneNumber) {
 
   // Vis inputfelt kun i scene 6
   if (sceneNumber === 6) {
-    userInputContainer.style.display = 'block';     // Vis inputfeltet
+    userInputContainer.style.display = 'block';           // Vis inputfeltet
   } else {
-    userInputContainer.style.display = 'none';      // Skjul inputfeltet i alle andre scener
+    userInputContainer.style.display = 'none';            // Skjul inputfeltet i alle andre scener
   }
 
-  // Videoelementet fjernes helt fra DOM'en i scene 4 og 6, så det ikke eksisterer. (Ellers blokerer video p og input på små skærme, så de ikke kan centreres i toppen)
+  // Videoelementet fjernes helt fra DOM'en i scene 4 og 6, så det ikke eksisterer (ellers blokerer video p og input på små skærme, så de ikke kan centreres i toppen)
 if (sceneNumber === 4 || sceneNumber === 6) {
   if (videoElement.parentNode) {
-    videoElement.parentNode.removeChild(videoElement);  // Fjern videoelementet helt fra DOM
+    videoElement.parentNode.removeChild(videoElement);    // Fjern videoelementet helt fra DOM
   }
 } else {
   // Hvis vi er i en anden scene, sørg for at videoen er i DOM'en
@@ -278,7 +278,7 @@ if (sceneNumber === 4 || sceneNumber === 6) {
   videoElement.play();
 }
 
-  // 'Active' knap - Hent billede og tekst-elementerne
+  // 'active' knap - hent billede og tekst-elementerne
   const activeImg = activeBtn.querySelector('img');
   const activeLabel = activeBtn.querySelector('.button-label');
 
@@ -299,7 +299,7 @@ if (sceneNumber === 4 || sceneNumber === 6) {
     activeBtn.style.display = 'none';                                    // Skjul knappen helt hvis, findes ikke
   }
 
-  // Sometimes-active knap
+  // 'sometimes-active' knap
   const sometimesImg = sometimesActiveBtn.querySelector('img');
   const sometimesLabel = sometimesActiveBtn.querySelector('.button-label');
 
@@ -348,7 +348,7 @@ function loadEnding(endingNumber) {
     }
   }
   
-  // Afslutning 1 - Se HTML id="decline-message" (linje #)
+  // Afslutning 1 - Se HTML id="decline-message" (l. 51)
 
   // Afslutning 2 - Tillykke, du afslørede svindleren!
   if (endingNumber === 2) {

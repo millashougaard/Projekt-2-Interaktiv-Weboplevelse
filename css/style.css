@@ -1,14 +1,13 @@
 @charset "UTF-8";
 /*Variables*/
-/* ---------------------- Global Styling ---------------------- */
+/* ---------------------- GLOBAL STYLING ---------------------- */
 /* Grundlæggende opsætning af hele dokumentet */
 html {
   box-sizing: border-box;
 }
-html *,
-html *::before,
-html *::after {
-  box-sizing: border-box;
+
+*, *::before, *::after {
+  box-sizing: inherit;
   margin: 0;
   padding: 0;
 }
@@ -20,7 +19,6 @@ html, body {
   font-family: "Inter", sans-serif;
 }
 
-/* Overordnet layoutstruktur */
 main {
   display: flex;
   flex-direction: column;
@@ -31,7 +29,6 @@ main {
   padding: 20px;
 }
 
-/* Fuldsidesektioner */
 .intro-page,
 .call-page-start,
 .phone {
@@ -41,12 +38,13 @@ main {
   flex-direction: column;
 }
 
-/* --------------- Intro Page --------------- */
+/* --------------- INTRO SIDE --------------- */
 .intro-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 40px;
+  min-height: 100vh;
 }
 @media (max-width: 600px) {
   .intro-page {
@@ -57,7 +55,7 @@ main {
   font-size: 2.6em;
   font-weight: 500;
   color: white;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 @media (max-width: 600px) {
   .intro-page h1 {
@@ -88,8 +86,7 @@ main {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  position: absolute;
-  bottom: 100px;
+  margin-top: 40px;
 }
 .intro-page .start-button .circle-bg {
   background-color: #A3DC80;
@@ -140,8 +137,7 @@ main {
   }
 }
 
-/* --------------- Call Header --------------- */
-/* Header med opkaldsinformation - bruges på tværs af sider */
+/* --------------- CALL HEADER --------------- */
 .call-header {
   text-align: center;
   color: white;
@@ -175,13 +171,13 @@ main {
   }
 }
 
-/* --------------- Call Page --------------- */
-/* Første opkaldsside (Telefonen ringer) */
+/* --------------- FØRSTE OPKALDSSIDE (telefonen ringer) --------------- */
 .call-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  min-height: 100vh;
 }
 .call-page .decline-message {
   background-color: #D9D9D9;
@@ -189,7 +185,7 @@ main {
   border-radius: 50px;
   max-width: 850px;
   padding: 40px;
-  margin-top: 120px;
+  margin-top: 60px;
   font-size: 1.8em;
   text-align: center;
 }
@@ -204,11 +200,11 @@ main {
   gap: 300px;
   flex-wrap: wrap;
   justify-content: center;
-  position: absolute;
-  bottom: 80px;
+  width: auto;
+  position: fixed;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  width: auto;
 }
 @media (max-width: 600px) {
   .call-page .call-buttons {
@@ -276,13 +272,11 @@ main {
   background-color: #FF453A;
 }
 
-/* --------------- Telefoninterface --------------- */
+/* --------------- TELEFONSAMTALE INTERFACE --------------- */
 .phone {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  /* Knap-rækker (fælles for alle scener) */
-  /* Indholdsområde: video, tekst, input og billede */
+  min-height: 100vh;
 }
 .phone .btn-row {
   display: flex;
@@ -379,9 +373,6 @@ main {
   box-sizing: border-box;
   width: 100%;
   min-height: 100dvh;
-  /* Videoelement centreres absolut og fylder maks 60% af bredde */
-  /* Tekst og input-felt (venstre side) */
-  /* Billedvisning (højre side) */
 }
 .phone .content-container video {
   max-width: 50%;
@@ -405,7 +396,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: 5rem;
+  padding-top: 2rem;
   padding-left: 3rem;
   gap: 1.5rem;
 }
@@ -422,6 +413,8 @@ main {
   width: 100%;
   max-width: 100%;
   margin: 0;
+  z-index: 2;
+  pointer-events: none;
 }
 @media (max-width: 600px) {
   .phone .content-container .text-side p {
@@ -441,6 +434,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  z-index: 3;
 }
 .phone .content-container .text-side #userInputContainer label {
   display: block;
@@ -498,7 +492,7 @@ main {
   }
 }
 
-/* --------------- Ending Page --------------- */
+/* --------------- AFSLUTNINGSSIDE --------------- */
 .ending {
   display: flex;
   flex-direction: column;
@@ -621,7 +615,7 @@ main {
   right: -120px;
 }
 .ending .overfold .main-box .icon-box img {
-  width: 350px;
+  width: 21rem;
 }
 @media (max-width: 600px) {
   .ending .overfold .main-box .icon-box img {
@@ -818,7 +812,7 @@ main {
   text-decoration: underline;
 }
 
-/*-----Info Page Styling-----*/
+/*---------- INFO SIDE ----------*/
 .info-page {
   padding: 2rem;
   margin: 0 auto;

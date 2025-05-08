@@ -1,20 +1,17 @@
-
-// partial.scss
 /*Variables*/
 $box-color: #D9D9D9;
-$active-btn-color: #FFFF; //General farve, når knappen er aktiv
-$inactive-btn-color: #575654; //General farve, når knappen er inaktiv
-$accept-btn-color: #A3DC80; 
-$decline-btn-color: #FF453A; 
-$icon-color: #565656; //Farve på vektor ikoner på knapper
-$bg-color: #32302D;
+$active-btn-color: white;         // Standard farve, når knappen er aktiv
+$inactive-btn-color: #575654;     // Standard farve, når knappen er inaktiv
+$accept-btn-color: #A3DC80;       // Accept knap farve (bruges også på fx alarm ikon for konsitens)
+$decline-btn-color: #FF453A;      // Afvis knap farve (bruges også på fx alarm ikon for konsistens)
+$bg-color: #32302D;               // Baggrund
 $font-family: 'Inter', sans-serif;
 $border-radius: 50px;
-$spacing: 20px; //General spacing
+$spacing: 20px;                     //General spacing
 
 // Breakpoints
 $breakpoint-mobile: 600px;
-$breakpoint-tablet: 900px;
+$breakpoint-tablet: 900px; 
 
 // Mixin til telefonknapper – inkl. mobilresponsivitet
 @mixin phone-button($bg-color) {
@@ -42,7 +39,7 @@ $breakpoint-tablet: 900px;
       pointer-events: none;
     }
 
-    // Mindre knap på mobil
+    // Telefon knapper skalerer i størrelse og ikon på mobil
     @include respond-to(mobile) {
       width: 60px;
       height: 60px;
@@ -73,7 +70,6 @@ $breakpoint-tablet: 900px;
     max-width: 60px;
   }
 }
-
 
 
 // Responsivt mixin
